@@ -1,0 +1,31 @@
+package com.utn.frba.srs.controller.contract;
+
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+@RequestMapping("/api/v1/srs/subsidiary")
+interface SubsidiaryController {
+
+	record SubsidiaryDto() {
+	}
+
+	record SubsidiaryReduceDto() {
+	}
+
+	@PostMapping
+	Long create(@RequestBody SubsidiaryController.SubsidiaryDto request);
+
+	@PutMapping("/{subsidiaryId}")
+	void update(@PathVariable("subsidiaryId") Long subsidiaryId, @RequestBody SubsidiaryController.SubsidiaryDto request);
+
+	@DeleteMapping("/{subsidiaryId}")
+	void delete(@PathVariable("subsidiaryId") Long subsidiaryId);
+
+	@GetMapping("/findByCustomer/{customerId}")
+	List<SubsidiaryController.SubsidiaryReduceDto> findByCustomer(@PathVariable("customerId") Long customerId);
+
+	@GetMapping("/findById/{subsidiaryId}")
+	SubsidiaryController.SubsidiaryReduceDto findById(@PathVariable("subsidiaryId") Long subsidiaryId);
+
+
+}
