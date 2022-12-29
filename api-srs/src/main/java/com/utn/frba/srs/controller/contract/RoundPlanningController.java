@@ -2,15 +2,25 @@ package com.utn.frba.srs.controller.contract;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalTime;
 import java.util.List;
 
 @RequestMapping("/api/v1/srs/round-planning")
-interface RoundPlanningController {
+public interface RoundPlanningController {
 
-	record RoundPlanningDto() {
+	record RoundPlanningDto(
+			 Long rondaId,
+			 String dayName,
+			 LocalTime timeStart
+	) {
 	}
 
-	record RoundPlanningReduceDto() {
+	record RoundPlanningReduceDto(
+            Long id,
+			Long rondaId,
+			String dayName,
+			LocalTime timeStart
+	) {
 	}
 
 	@PostMapping

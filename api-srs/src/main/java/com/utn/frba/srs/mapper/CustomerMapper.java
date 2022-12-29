@@ -12,6 +12,8 @@ public interface CustomerMapper {
 
     CustomerMapper INSTANCE = Mappers.getMapper(CustomerMapper.class);
 
+
+
     @Mappings({
             @Mapping(source="razonSocial", target="razonSocial"),
             @Mapping(source="tipoDocumento", target="tipoDocumento"),

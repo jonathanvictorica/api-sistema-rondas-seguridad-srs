@@ -18,6 +18,7 @@ public class RondaRuta {
 	@ManyToOne
 	@JoinColumn(name = "ronda_ID")
 	private Ronda ronda;
+
 	private int ordenCaminoRuta;
 
 	@Embedded

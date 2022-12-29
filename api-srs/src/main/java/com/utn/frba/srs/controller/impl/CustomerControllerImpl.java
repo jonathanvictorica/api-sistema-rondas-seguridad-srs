@@ -1,7 +1,6 @@
 package com.utn.frba.srs.controller.impl;
 
 import com.utn.frba.srs.controller.contract.CustomerController;
-import com.utn.frba.srs.mapper.CompanySecurityMapper;
 import com.utn.frba.srs.mapper.CustomerMapper;
 import com.utn.frba.srs.service.CustomerService;
 import org.springframework.web.bind.annotation.RestController;

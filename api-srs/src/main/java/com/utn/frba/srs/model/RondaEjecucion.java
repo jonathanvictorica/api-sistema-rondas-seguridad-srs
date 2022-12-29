@@ -3,7 +3,7 @@ package com.utn.frba.srs.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 @Getter
 @Setter
@@ -31,7 +31,7 @@ public class RondaEjecucion {
 	@JoinColumn(name = "usuario_revision_id")
 	private UsuarioSistema usuarioRevision;
 	private String comentarioRevision;
-	private Date fechaHoraRevision;
+	private LocalDateTime fechaHoraRevision;
 
 	private Boolean indicadorRondaEjecucionFallida = false;
 	private Boolean indicadorRondaIncidentes = false;

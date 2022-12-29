@@ -2,7 +2,6 @@ package com.utn.frba.srs.repository;
 
 import com.utn.frba.srs.model.SucursalCliente;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

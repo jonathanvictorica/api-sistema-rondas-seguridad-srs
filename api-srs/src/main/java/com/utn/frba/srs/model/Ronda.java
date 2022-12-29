@@ -24,23 +24,14 @@ public class Ronda {
 	private String nombre;
 	private String descripcion;
 
-	@ManyToOne
-	@JoinColumn(name = "estado_ronda_codigo")
-	private EstadoRonda estadoRonda;
-
-
 	@OneToMany
 	private List<RondaCheckPoint> checkpoints;
 
 	@OneToMany
 	private List<RondaRuta> rutas;
 
-
-	private Ubicacion ubicacion;
+	private Ubicacion ubicacionCentral;
 	private String ubicacionZoom = "0";
-	private Integer tiempoRecorridoRonda;
-
-
 	private Boolean activo = true;
 
 

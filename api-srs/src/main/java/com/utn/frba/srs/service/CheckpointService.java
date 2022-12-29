@@ -1,6 +1,5 @@
 package com.utn.frba.srs.service;
 
-import com.utn.frba.srs.constants.Constantes;
 import com.utn.frba.srs.exception.CatalogoErrores;
 import com.utn.frba.srs.exception.SRSException;
 import com.utn.frba.srs.model.CheckPoint;

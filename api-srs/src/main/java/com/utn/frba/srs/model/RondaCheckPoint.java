@@ -22,8 +22,8 @@ public class RondaCheckPoint {
 	@ManyToOne
 	@JoinColumn(name = "check_point_identificador_nfc")
 	private CheckPoint checkPoint;
+
 	private Integer ordenEjecucion;
-	private int tiempoPermanenciaEnSegundos = 0;	
 
 	
 

@@ -3,7 +3,7 @@ package com.utn.frba.srs.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 @Getter
 @Setter
 @Table
@@ -18,8 +18,8 @@ public class Planificacion {
 	@ManyToOne
 	@JoinColumn(name = "ronda_ID")
 	private Ronda ronda;
-	private Date fechaHoraAsignacion;
-	private Date fechaHoraInicio;
+	private LocalDateTime fechaHoraAsignacion;
+	private LocalDateTime fechaHoraInicio;
 	@ManyToOne
 	@JoinColumn(name = "ronda_ejecucion_ID")
 	private RondaEjecucion rondaEjecucion;

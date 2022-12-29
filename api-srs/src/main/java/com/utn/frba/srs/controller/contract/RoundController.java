@@ -4,12 +4,43 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RequestMapping("/api/v1/srs/round")
-interface RoundController {
+public interface RoundController {
 
-	record RoundDto() {
+
+	record RoundCheckPointDto(
+			String identificadorNFC,
+			Integer order
+	){}
+
+	record RoundRutaDto(
+			Integer order,
+			String latitud,
+			String longitud
+	){}
+	record RoundDto(
+			Long sucursalClienteId,
+			String nombre,
+			String descripcion,
+			String latitudCentral,
+			String longitudCentral,
+			String ubicacionZoom,
+			List<RoundCheckPointDto> checkpoints,
+            List<RoundRutaDto> rutas
+	) {
 	}
 
-	record RoundReduceDto() {
+
+	record RoundReduceDto(
+			Long roundId,
+			Long sucursalClienteId,
+			String nombre,
+			String descripcion,
+			String latitudCentral,
+			String longitudCentral,
+			String ubicacionZoom,
+			List<RoundCheckPointDto> checkpoints,
+			List<RoundRutaDto> rutas
+	) {
 	}
 
 	@PostMapping

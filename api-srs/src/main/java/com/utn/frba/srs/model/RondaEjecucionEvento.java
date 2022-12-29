@@ -4,7 +4,7 @@ package com.utn.frba.srs.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -32,7 +32,7 @@ public class RondaEjecucionEvento {
 	@ManyToOne
 	@JoinColumn(name = "usuario_id")
 	private UsuarioSistema usuario;
-	private Date fechaHoraEvento;
+	private LocalDateTime fechaHoraEvento;
 	private String comentarioVigilante;
 
 
@@ -41,7 +41,7 @@ public class RondaEjecucionEvento {
 	@JoinColumn(name = "usuario_revision_id")
 	private UsuarioSistema usuarioRevision;
 	private String comentarioRevision;
-	private Date fechaHoraRevision;
+	private LocalDateTime fechaHoraRevision;
 
 	private Boolean isResuelto;
 
