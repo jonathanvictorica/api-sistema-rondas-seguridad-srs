@@ -4,11 +4,42 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RequestMapping("/api/v1/srs/customers")
-interface CustomerController {
-	record CustomerDto() {
+public interface CustomerController {
+	record CustomerDto(
+			String empresaSeguridadId,
+			String razonSocial,
+			String tipoDocumento,
+			String nroDocumento,
+			String nombreCalle,
+			String altura,
+			String departamento,
+			String piso,
+			String ciudad,
+			String partido,
+			String provincia,
+			String pais,
+			String latitud,
+			String longitud
+	) {
 	}
 
-	record CustomerReduceDto() {
+	record CustomerReduceDto(
+			Long id,
+			String empresaSeguridadId,
+			String razonSocial,
+			String tipoDocumento,
+			String nroDocumento,
+			String nombreCalle,
+			String altura,
+			String departamento,
+			String piso,
+			String ciudad,
+			String partido,
+			String provincia,
+			String pais,
+			String latitud,
+			String longitud
+	) {
 	}
 
 	@PostMapping

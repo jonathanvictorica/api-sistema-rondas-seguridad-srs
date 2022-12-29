@@ -6,11 +6,41 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RequestMapping("/api/v1/srs/company-security")
-interface CompanySecurityController {
-	record CompanySecurityDto() {
+public interface CompanySecurityController {
+	record CompanySecurityDto(
+			String razonSocial,
+			String tipoDocumento,
+			String nroDocumento,
+			String nombreCalle,
+			String altura,
+			String departamento,
+			String piso,
+			String ciudad,
+			String partido,
+			String provincia,
+			String pais ,
+			String latitud,
+			String longitud
+
+	) {
 	}
 
-	record CompanySecurityReduceDto() {
+	record CompanySecurityReduceDto(
+			Long id,
+			String razonSocial,
+			String tipoDocumento,
+			String nroDocumento,
+			String nombreCalle,
+			String altura,
+			String departamento,
+			String piso,
+			String ciudad,
+			String partido,
+			String provincia,
+			String pais ,
+			String latitud,
+			String longitud
+	) {
 	}
 
 	@PostMapping

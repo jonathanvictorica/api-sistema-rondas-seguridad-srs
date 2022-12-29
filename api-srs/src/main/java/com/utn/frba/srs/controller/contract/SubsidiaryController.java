@@ -4,12 +4,43 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RequestMapping("/api/v1/srs/subsidiary")
-interface SubsidiaryController {
+public interface SubsidiaryController {
 
-	record SubsidiaryDto() {
+	record SubsidiaryDto(
+			 String nombre,
+			 String descripcion,
+			 String nombreCalle,
+			 String altura,
+			 String departamento,
+			 String piso,
+			 String ciudad,
+			 String partido,
+			 String provincia,
+			 String pais ,
+			 String latitud,
+			 String longitud,
+			Long clienteSeguridadId
+
+	) {
 	}
 
-	record SubsidiaryReduceDto() {
+	record SubsidiaryReduceDto(
+			Long id,
+			String nombre,
+			String descripcion,
+			String nombreCalle,
+			String altura,
+			String departamento,
+			String piso,
+			String ciudad,
+			String partido,
+			String provincia,
+			String pais ,
+			String latitud,
+			String longitud,
+			Long clienteSeguridadId
+
+	) {
 	}
 
 	@PostMapping
