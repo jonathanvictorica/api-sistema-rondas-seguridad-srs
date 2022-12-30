@@ -7,34 +7,30 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@Table
+@Table(name = "User", uniqueConstraints = {
+		@UniqueConstraint(name = "uc_user_tipodocumento", columnNames = {"tipoDocumento", "nroDocumento"}),
+		@UniqueConstraint(name = "uc_user_mail", columnNames = {"mail"})
+})
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UsuarioSistema {
+public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
 	@ManyToOne
 	@JoinColumn(name = "empresa_seguridad_ID")
 	private EmpresaSeguridad empresaSeguridad;
-
 	private String nombre;
 	private String apellido;
 	private String tipoDocumento;
 	private String nroDocumento;
 	private String mail = "";
-
 	private String rolPrincipal;
-
-	private String nickLogueo;
-	private String password = "";
-	private Integer cantidadIntentosFallidos = 0;
-	private Boolean usuarioBloqueado = false;
 	private Boolean usuarioActivo = true;
+
 
 
 }

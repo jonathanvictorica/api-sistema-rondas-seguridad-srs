@@ -1,8 +1,6 @@
 package com.utn.frba.srs.mapper;
 
-import com.utn.frba.srs.controller.contract.CustomerController;
-import com.utn.frba.srs.controller.contract.RoundPlanningController;
-import com.utn.frba.srs.model.ClienteEmpresaSeguridad;
+import com.utn.frba.srs.controller.RoundPlanningController;
 import com.utn.frba.srs.model.RondaPlanificacion;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

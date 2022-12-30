@@ -1,6 +1,6 @@
 package com.utn.frba.srs.mapper;
 
-import com.utn.frba.srs.controller.contract.CustomerController;
+import com.utn.frba.srs.controller.CustomerController;
 import com.utn.frba.srs.model.ClienteEmpresaSeguridad;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

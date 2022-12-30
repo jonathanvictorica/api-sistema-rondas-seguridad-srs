@@ -29,17 +29,12 @@ public class RondaEjecucion {
 	// campos
 	@ManyToOne
 	@JoinColumn(name = "usuario_revision_id")
-	private UsuarioSistema usuarioRevision;
+	private User usuarioRevision;
 	private String comentarioRevision;
 	private LocalDateTime fechaHoraRevision;
 
-	private Boolean indicadorRondaEjecucionFallida = false;
-	private Boolean indicadorRondaIncidentes = false;
-	private Boolean indicadorRondaFinalizada =false;
-	private Boolean indicadorRondaEjecutada = true;
-	@ManyToOne
-	@JoinColumn(name = "estado_codigo")
-	private EstadoRondaEjecucion estado;
+
+	private String estado;
 
 
 	

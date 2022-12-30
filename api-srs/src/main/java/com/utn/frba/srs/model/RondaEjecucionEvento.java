@@ -17,12 +17,12 @@ public class RondaEjecucionEvento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	private LocalDateTime fechaHoraEvento;
 	@ManyToOne
 	@JoinColumn(name = "ronda_ejecucion_ID")
 	private RondaEjecucion rondaEjecucion;
-	@ManyToOne
-	@JoinColumn(name = "tipo_evento_codigo")
-	private TipoEventoRonda tipoEvento;
+
+	private String tipoEvento;
 
 	private String checkpointIdentificadorNFC = "";
 
@@ -31,18 +31,9 @@ public class RondaEjecucionEvento {
 
 	@ManyToOne
 	@JoinColumn(name = "usuario_id")
-	private UsuarioSistema usuario;
-	private LocalDateTime fechaHoraEvento;
-	private String comentarioVigilante;
+	private User usuario;
 
 
-	// En caso que un supervisor tenga que revisar la ronda se llenan estos campos
-	@ManyToOne
-	@JoinColumn(name = "usuario_revision_id")
-	private UsuarioSistema usuarioRevision;
-	private String comentarioRevision;
-	private LocalDateTime fechaHoraRevision;
 
-	private Boolean isResuelto;
 
 }

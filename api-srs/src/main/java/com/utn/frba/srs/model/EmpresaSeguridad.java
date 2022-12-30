@@ -7,7 +7,9 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@Table
+@Table(name = "EmpresaSeguridad", uniqueConstraints = {
+		@UniqueConstraint(name = "uc_empresaseguridad", columnNames = {"tipoDocumento", "nroDocumento"})
+})
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor

@@ -4,6 +4,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Time;
+import java.time.LocalTime;
+
 @Getter
 @Setter
 @Table
@@ -20,7 +22,7 @@ public class RondaPlanificacion {
 	@JoinColumn(name = "ronda_id")
 	private Ronda ronda;
 	private String diaSemana;
-	private Time horaInicio;
+	private LocalTime horaInicio;
 
 
 	

@@ -6,7 +6,9 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@Table
+@Table(name = "RondaCheckPoint", uniqueConstraints = {
+		@UniqueConstraint(name = "uc_rondacheckpoint_ronda_id", columnNames = {"ronda_ID", "check_point_identificador_nfc"})
+})
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor

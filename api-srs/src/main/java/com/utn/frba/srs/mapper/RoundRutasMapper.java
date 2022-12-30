@@ -1,30 +1,28 @@
 package com.utn.frba.srs.mapper;
 
-import com.utn.frba.srs.controller.CheckpointController;
-import com.utn.frba.srs.model.CheckPoint;
+import com.utn.frba.srs.controller.RoundController;
+import com.utn.frba.srs.model.RondaRuta;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
-public interface CheckpointMapper {
+public interface RoundRutasMapper {
 
-    CheckpointMapper INSTANCE = Mappers.getMapper(CheckpointMapper.class);
-
+    RoundRutasMapper INSTANCE = Mappers.getMapper(RoundRutasMapper.class);
 
     @Mappings({
             @Mapping(source="latitud", target="ubicacion.latitud"),
             @Mapping(source="longitud", target="ubicacion.longitud"),
-            @Mapping(source="subsidiaryId", target="sucursalCliente.id")
+            @Mapping(source="order", target="ordenCaminoRuta")
     })
-    CheckPoint toCheckpoint(CheckpointController.CheckpointDto entity);
-
+    RondaRuta toRoundRutas(RoundController.RoundRutaDto entity);
 
     @Mappings({
             @Mapping(target="latitud", source="ubicacion.latitud"),
             @Mapping(target="longitud", source="ubicacion.longitud"),
-            @Mapping(target="subsidiaryId", source="sucursalCliente.id")
+            @Mapping(target="order", source="ordenCaminoRuta")
     })
-    CheckpointController.CheckpointReduceDto toCheckpointReduceDto(CheckPoint entity) ;
+    RoundController.RoundRutaDto toRoundRutaDto(RondaRuta entity);
 }

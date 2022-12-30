@@ -16,7 +16,7 @@ public class RoundPlanningService {
     }
 
     public List<RondaPlanificacion> findByRoundId(Long roundId) {
-        return rondaPlanificacionRepository.findByRound_id(roundId);
+        return rondaPlanificacionRepository.findByRonda_id(roundId);
     }
 
     public RondaPlanificacion findById(Long roundPlanningId) {

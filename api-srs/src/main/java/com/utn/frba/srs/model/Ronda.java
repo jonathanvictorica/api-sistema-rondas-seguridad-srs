@@ -8,7 +8,9 @@ import java.util.List;
 
 @Getter
 @Setter
-@Table
+@Table(name = "Ronda", uniqueConstraints = {
+		@UniqueConstraint(name = "uc_ronda_sucursal_cliente_id", columnNames = {"sucursal_cliente_id", "nombre"})
+})
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor

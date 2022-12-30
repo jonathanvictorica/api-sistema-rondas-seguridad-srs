@@ -1,0 +1,8 @@
+### Send POST request with json body
+POST http://localhost:8080/api/v1/srs/round-execute/startRound
+Content-Type: application/json
+
+{
+  "id": 999,
+  "value": "content"
+}
