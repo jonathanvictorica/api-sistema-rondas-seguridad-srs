@@ -15,7 +15,7 @@ public class RoundMarkCheckpointEvent  extends EventProducer<RoundMarkCheckpoint
 
     @Override
     protected String topic() {
-        return CatalogEvents.RoundMarkCheckpointEvent;
+        return CatalogEvents.ROUND_MARK_CHECKPOINT_EVENT;
     }
 
     @Getter
@@ -23,9 +23,9 @@ public class RoundMarkCheckpointEvent  extends EventProducer<RoundMarkCheckpoint
     public static class Data implements Serializable {
         private Long roundExecuteId;
         private Long userAgentId;
-        private String latitud;
-        private String longitud;
-        private String nfcIdentificador;
+        private String latitude;
+        private String longitude;
+        private String nfcCode;
 
     }
 }

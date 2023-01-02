@@ -12,42 +12,54 @@ import java.util.List;
 public class CheckpointController {
     private final CheckpointService checkpointService;
 
+    private final CheckpointMapper mapper;
 
-    public CheckpointController(CheckpointService checkpointService) {
+
+    public CheckpointController(CheckpointService checkpointService, CheckpointMapper mapper) {
         this.checkpointService = checkpointService;
+        this.mapper = mapper;
     }
 
     @PostMapping
     public void create(@RequestBody CheckpointDto request) throws SRSException {
-        checkpointService.create(CheckpointMapper.INSTANCE.toCheckpoint(request));
+        checkpointService.create(mapper.toCheckpoint(request));
     }
 
-    @PutMapping("/{checkpointId}")
-    void update(@PathVariable("checkpointId") Long checkpointId, @RequestBody CheckpointDto request) throws SRSException {
-checkpointService.update(CheckpointMapper.INSTANCE.toCheckpoint(request));
+    @PutMapping
+    void update(@RequestBody CheckpointDto request) throws SRSException {
+        checkpointService.update(mapper.toCheckpoint(request));
     }
 
     @DeleteMapping("/{nfcIdentify}")
-    public void delete(String nfcIdentify) {
+    public void delete(@PathVariable String nfcIdentify) {
         checkpointService.delete(nfcIdentify);
     }
 
     @GetMapping("/findBySubsidiary/{subsidiaryId}")
-    public List<CheckpointReduceDto> findBySubsidiary(Long subsidiaryId) {
-        return checkpointService.findBySubsidiary(subsidiaryId).stream().map(CheckpointMapper.INSTANCE::toCheckpointReduceDto).toList();
+    public CheckpointReduceListDto findBySubsidiary(@PathVariable Long subsidiaryId) {
+        return new CheckpointReduceListDto(checkpointService.findBySubsidiary(subsidiaryId).stream().map(mapper::toCheckpointReduceDto).toList());
+    }
+
+    @GetMapping("/findById/{checkpointNfc}")
+    public CheckpointReduceDto findById(@PathVariable String checkpointNfc) {
+        return mapper.toCheckpointReduceDto(checkpointService.findById(checkpointNfc));
     }
 
 
     public record CheckpointDto(
-            String identificadorNFC,
-            String latitud, String longitud, Long subsidiaryId
+            String nfcCode,
+            String latitude, String longitude, Long subsidiaryId
     ) {
     }
 
     public record CheckpointReduceDto(
-            Long id,
-            String identificadorNFC,
-            String latitud, String longitud, Long subsidiaryId
+            String nfcCode,
+            String latitude, String longitude, Long subsidiaryId
+    ) {
+    }
+
+    public record CheckpointReduceListDto(
+            List<CheckpointReduceDto> checkpoints
     ) {
     }
 }

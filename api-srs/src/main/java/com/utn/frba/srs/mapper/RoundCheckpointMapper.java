@@ -1,26 +1,26 @@
 package com.utn.frba.srs.mapper;
 
 import com.utn.frba.srs.controller.RoundController;
-import com.utn.frba.srs.model.RondaCheckPoint;
+import com.utn.frba.srs.model.RoundCheckpoint;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Component;
 
 @Mapper(componentModel = "spring")
+@Component
 public interface RoundCheckpointMapper {
 
-    RoundCheckpointMapper INSTANCE = Mappers.getMapper(RoundCheckpointMapper.class);
 
     @Mappings({
-            @Mapping(source="identificadorNFC", target="checkPoint.identificadorNFC"),
-            @Mapping(source="order", target="ordenEjecucion")
+            @Mapping(source="nfcCode", target="checkpoint.nfcCode"),
+            @Mapping(source="executionOrder", target="executionOrder")
     })
-    RondaCheckPoint toRondaCheckPoint(RoundController.RoundCheckPointDto entity);
+    RoundCheckpoint toRondaCheckPoint(RoundController.RoundCheckPointDto entity);
 
     @Mappings({
-            @Mapping(target="identificadorNFC", source="checkPoint.identificadorNFC"),
-            @Mapping(target="order", source="ordenEjecucion")
+            @Mapping(target="nfcCode", source="checkpoint.nfcCode"),
+            @Mapping(target="executionOrder", source="executionOrder")
     })
-    RoundController.RoundCheckPointDto toRoundCheckPointDto(RondaCheckPoint entity);
+    RoundController.RoundCheckPointDto toRoundCheckPointDto(RoundCheckpoint entity);
 }

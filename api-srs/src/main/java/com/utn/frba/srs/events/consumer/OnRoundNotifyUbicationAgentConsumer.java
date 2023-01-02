@@ -3,11 +3,11 @@ package com.utn.frba.srs.events.consumer;
 import com.utn.frba.srs.constants.Constantes;
 import com.utn.frba.srs.events.producer.CatalogEvents;
 import com.utn.frba.srs.events.producer.RoundNotifyUbicationAgentEvent;
-import com.utn.frba.srs.model.RondaEjecucionEvento;
-import com.utn.frba.srs.model.Ubicacion;
+import com.utn.frba.srs.model.RoundExecuteEvent;
+import com.utn.frba.srs.model.Ubiety;
 import com.utn.frba.srs.model.User;
-import com.utn.frba.srs.repository.RondaEjecucionEventoRepository;
-import com.utn.frba.srs.repository.RondaEjecucionRepository;
+import com.utn.frba.srs.repository.RoundExecuteEventRepository;
+import com.utn.frba.srs.repository.RoundExecuteRepository;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
@@ -16,34 +16,34 @@ import java.time.LocalDateTime;
 @Component
 public class OnRoundNotifyUbicationAgentConsumer {
 
-    private final RondaEjecucionRepository rondaEjecucionRepository;
+    private final RoundExecuteRepository roundExecuteRepository;
 
-    private final RondaEjecucionEventoRepository rondaEjecucionEventoRepository;
+    private final RoundExecuteEventRepository roundExecuteEventRepository;
 
 
-    public OnRoundNotifyUbicationAgentConsumer(RondaEjecucionRepository rondaEjecucionRepository, RondaEjecucionEventoRepository rondaEjecucionEventoRepository) {
-        this.rondaEjecucionRepository = rondaEjecucionRepository;
-        this.rondaEjecucionEventoRepository = rondaEjecucionEventoRepository;
+    public OnRoundNotifyUbicationAgentConsumer(RoundExecuteRepository roundExecuteRepository, RoundExecuteEventRepository roundExecuteEventRepository) {
+        this.roundExecuteRepository = roundExecuteRepository;
+        this.roundExecuteEventRepository = roundExecuteEventRepository;
     }
 
-    @KafkaListener(topics = CatalogEvents.RoundNotifyUbicationAgentEvent,
+    @KafkaListener(topics = CatalogEvents.ROUND_NOTIFY_UBICATION_AGENT_EVENT,
             groupId = "group-id")
     public void execute(RoundNotifyUbicationAgentEvent.Data data) {
-        var rondaEjecucion = rondaEjecucionRepository.findById(data.getRoundExecuteId()).orElse(null);
+        var rondaEjecucion = roundExecuteRepository.findById(data.getRoundExecuteId()).orElse(null);
         if (rondaEjecucion == null) {
             return;
         }
-        if (!rondaEjecucion.getEstado().equals(Constantes.RONDA_EJECUCION_INPROGRESS)) {
+        if (!rondaEjecucion.getState().equals(Constantes.RONDA_EJECUCION_INPROGRESS)) {
             return;
         }
-        var rondaEjecucionEvento = rondaEjecucionEventoRepository.findByRondaEjecucion_IdAndTipoEvento(data.getRoundExecuteId(), Constantes.RONDA_EJECUCION_UBICACION_AGENT);
-        rondaEjecucionEventoRepository.save(RondaEjecucionEvento.builder()
-                .rondaEjecucion(rondaEjecucion)
+        var rondaEjecucionEvento = roundExecuteEventRepository.findByRoundExecute_IdAndEventType(data.getRoundExecuteId(), Constantes.RONDA_EJECUCION_UBICACION_AGENT);
+        roundExecuteEventRepository.save(RoundExecuteEvent.builder()
+                .roundExecute(rondaEjecucion)
                 .id(rondaEjecucionEvento != null ? rondaEjecucionEvento.getId() : null)
-                .tipoEvento(Constantes.RONDA_EJECUCION_UBICACION_AGENT)
-                .ubicacion(Ubicacion.builder().latitud(data.getLatitud()).longitud(data.getLongitud()).build())
-                .fechaHoraEvento(LocalDateTime.now())
-                .usuario(User.builder().id(data.getUserAgentId()).build())
+                .eventType(Constantes.RONDA_EJECUCION_UBICACION_AGENT)
+                .ubiety(Ubiety.builder().latitude(data.getLatitude()).longitude(data.getLongitude()).build())
+                .dateTimeEvent(LocalDateTime.now())
+                .user(User.builder().id(data.getUserAgentId()).build())
                 .build());
     }
 }

@@ -7,23 +7,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/srs/subsidiary")
+@RequestMapping("/api/v1/srs/subsidiaries")
 public class SubsidiaryController {
 
     private final SubsidiaryService subsidiaryService;
+    private final SubsidiaryMapper mapper;
 
-    public SubsidiaryController(SubsidiaryService subsidiaryService) {
+    public SubsidiaryController(SubsidiaryService subsidiaryService, SubsidiaryMapper mapper) {
         this.subsidiaryService = subsidiaryService;
+        this.mapper = mapper;
     }
 
     @PostMapping
     Long create(@RequestBody SubsidiaryDto request) {
-        return subsidiaryService.create(SubsidiaryMapper.INSTANCE.toSucursalCliente(request));
+        return subsidiaryService.create(mapper.toSubsidiary(request));
     }
 
     @PutMapping("/{subsidiaryId}")
     void update(@PathVariable("subsidiaryId") Long subsidiaryId, @RequestBody SubsidiaryDto request) {
-        subsidiaryService.update(SubsidiaryMapper.INSTANCE.toSucursalCliente(request));
+        subsidiaryService.update(mapper.toSubsidiary(request));
     }
 
     @DeleteMapping("/{subsidiaryId}")
@@ -33,47 +35,46 @@ public class SubsidiaryController {
 
     @GetMapping("/findByCustomer/{customerId}")
     List<SubsidiaryReduceDto> findByCustomer(@PathVariable("customerId") Long customerId) {
-        return subsidiaryService.findByCustomer(customerId).stream().map(SubsidiaryMapper.INSTANCE::toSubsidiaryReduceDto).toList();
+        return subsidiaryService.findByCustomer(customerId).stream().map(mapper::toSubsidiaryReduceDto).toList();
     }
 
     @GetMapping("/findById/{subsidiaryId}")
     SubsidiaryReduceDto findById(@PathVariable("subsidiaryId") Long subsidiaryId) {
-        return SubsidiaryMapper.INSTANCE.toSubsidiaryReduceDto(subsidiaryService.findById(subsidiaryId));
+        return mapper.toSubsidiaryReduceDto(subsidiaryService.findById(subsidiaryId));
     }
 
     public  record SubsidiaryDto(
-            String nombre,
-            String descripcion,
-            String nombreCalle,
-            String altura,
-            String departamento,
-            String piso,
-            String ciudad,
-            String partido,
-            String provincia,
-            String pais ,
-            String latitud,
-            String longitud,
-            Long clienteSeguridadId
+            Long id,
+            String name,
+            String description,
+            String streetName,
+            String streetNumber,
+            String apartment,
+            String flat,
+            String city,
+            String party,
+            String province,
+            String latitude,
+            String longitude,
+            Long customerId
 
     ) {
     }
 
     public    record SubsidiaryReduceDto(
             Long id,
-            String nombre,
-            String descripcion,
-            String nombreCalle,
-            String altura,
-            String departamento,
-            String piso,
-            String ciudad,
-            String partido,
-            String provincia,
-            String pais ,
-            String latitud,
-            String longitud,
-            Long clienteSeguridadId
+             String name,
+             String description,
+             String streetName,
+             String streetNumber,
+             String apartment,
+             String flat,
+             String city,
+             String party,
+             String province,
+             String latitude,
+             String longitude,
+             Long customerId
 
     ) {
     }

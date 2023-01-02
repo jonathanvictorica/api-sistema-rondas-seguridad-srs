@@ -1,7 +1,7 @@
 package com.utn.frba.srs.service;
 
-import com.utn.frba.srs.model.EmpresaSeguridad;
-import com.utn.frba.srs.repository.EmpresaSeguridadRepository;
+import com.utn.frba.srs.model.SecurityCompany;
+import com.utn.frba.srs.repository.SecurityCompanyRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,34 +10,34 @@ import java.util.List;
 @Service
 public class CompanySecurityService {
 
-    private final EmpresaSeguridadRepository empresaSeguridadRepository;
+    private final SecurityCompanyRepository securityCompanyRepository;
 
-    public CompanySecurityService(EmpresaSeguridadRepository empresaSeguridadRepository) {
-        this.empresaSeguridadRepository = empresaSeguridadRepository;
+    public CompanySecurityService(SecurityCompanyRepository securityCompanyRepository) {
+        this.securityCompanyRepository = securityCompanyRepository;
     }
 
-    public Long create(EmpresaSeguridad empresaSeguridad) {
-        empresaSeguridadRepository.save(empresaSeguridad);
+    public Long create(SecurityCompany empresaSeguridad) {
+        securityCompanyRepository.save(empresaSeguridad);
         return empresaSeguridad.getId();
     }
 
-    public void update(EmpresaSeguridad empresaSeguridad) {
-        empresaSeguridadRepository.save(empresaSeguridad);
+    public void update(SecurityCompany empresaSeguridad) {
+        securityCompanyRepository.save(empresaSeguridad);
     }
 
     public void delete(Long companySecurityId) {
-        empresaSeguridadRepository.deleteById(companySecurityId);
+        securityCompanyRepository.deleteById(companySecurityId);
     }
 
-    public List<EmpresaSeguridad> all() {
-        return empresaSeguridadRepository.findAll();
+    public List<SecurityCompany> all() {
+        return securityCompanyRepository.findAll();
     }
 
-    public EmpresaSeguridad findById(Long companySecurityId) {
-        return empresaSeguridadRepository.findById(companySecurityId).orElse(null);
+    public SecurityCompany findById(Long companySecurityId) {
+        return securityCompanyRepository.findById(companySecurityId).orElse(null);
     }
 
-    public EmpresaSeguridad findByDocument(String type, String value) {
-        return empresaSeguridadRepository.findTop1ByTipoDocumentoAndNroDocumento(type,value);
+    public SecurityCompany findByDocument(String type, String value) {
+        return securityCompanyRepository.findTop1ByDocumentTypeAndDocumentValue(type,value);
     }
 }

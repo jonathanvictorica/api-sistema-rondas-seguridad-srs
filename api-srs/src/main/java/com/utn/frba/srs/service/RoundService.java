@@ -1,42 +1,78 @@
 package com.utn.frba.srs.service;
 
-import com.utn.frba.srs.model.Ronda;
-import com.utn.frba.srs.repository.RondaRepository;
+import com.utn.frba.srs.exception.CatalogoErrores;
+import com.utn.frba.srs.exception.SRSException;
+import com.utn.frba.srs.model.Round;
+import com.utn.frba.srs.model.RoundCheckpoint;
+import com.utn.frba.srs.model.RoundRoute;
+import com.utn.frba.srs.repository.RoundCheckpointRepository;
+import com.utn.frba.srs.repository.RoundRepository;
+import com.utn.frba.srs.repository.RoundRouteRepository;
+import com.utn.frba.srs.repository.SubsidiaryRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
 @Service
 public class RoundService {
 
-    private final RondaRepository rondaRepository;
+    private final RoundRepository roundRepository;
+    private final RoundCheckpointRepository roundCheckpointRepository;
+    private final RoundRouteRepository roundRouteRepository;
 
-    public RoundService(RondaRepository rondaRepository) {
-        this.rondaRepository = rondaRepository;
+    private final SubsidiaryRepository subsidiaryRepository;
+
+    public RoundService(RoundRepository roundRepository, RoundCheckpointRepository roundCheckpointRepository, RoundRouteRepository roundRouteRepository, SubsidiaryRepository subsidiaryRepository) {
+        this.roundRepository = roundRepository;
+        this.roundCheckpointRepository = roundCheckpointRepository;
+        this.roundRouteRepository = roundRouteRepository;
+        this.subsidiaryRepository = subsidiaryRepository;
     }
 
-    public Long create(Ronda ronda) {
-        rondaRepository.save(ronda);
-        return ronda.getId();
+    public Long create(Round round) throws SRSException {
+        saveOrUpdateRound(round);
+        return round.getId();
     }
 
-    public void update(Ronda ronda) {
-        rondaRepository.save(ronda);
+    private void saveOrUpdateRound(Round round) throws SRSException {
+        preValidateRound(round);
+        round.getCheckpoints().forEach(rondaCheckPoint -> rondaCheckPoint.setRound(round));
+        round.getRoutes().forEach(rondaRuta -> rondaRuta.setRound(round));
+        if (round.getId() != null) {
+            roundRouteRepository.findByRound_Id(round.getId()).stream().map(RoundRoute::getId).forEach(roundRouteRepository::deleteById);
+            roundCheckpointRepository.findByRound_Id(round.getId()).stream().map(RoundCheckpoint::getId).forEach(roundCheckpointRepository::deleteById);
+        }
+        roundRepository.save(round);
+    }
+
+    private void preValidateRound(Round round) throws SRSException {
+        subsidiaryRepository.findById(round.getSubsidiary().getId()).orElseThrow(() -> new SRSException(CatalogoErrores.SUCURSAL_NO_EXISTE));
+        if (CollectionUtils.isEmpty(round.getCheckpoints())) {
+            throw new SRSException(CatalogoErrores.RONDA_SIN_CHECKPOINTS);
+        }
+        if (CollectionUtils.isEmpty(round.getRoutes())) {
+            throw new SRSException(CatalogoErrores.RONDA_SIN_RUTAS);
+        }
+    }
+
+    public void update(Round round) throws SRSException {
+        saveOrUpdateRound(round);
     }
 
     public void delete(Long roundId) {
-        rondaRepository.deleteById(roundId);
+        roundRepository.deleteById(roundId);
     }
 
-    public List<Ronda> findBySubsidiary(Long subsidiaryId) {
-        return rondaRepository.findBySucursalCliente_id(subsidiaryId);
+    public List<Round> findBySubsidiary(Long subsidiaryId) {
+        return roundRepository.findBySubsidiary_id(subsidiaryId);
     }
 
-    public List<Ronda> findByCustomer(Long customerId) {
-        return rondaRepository.findBySucursalCliente_clienteEmpresaSeguridad_id(customerId);
+    public List<Round> findByCustomer(Long customerId) {
+        return roundRepository.findBySubsidiary_customer_id(customerId);
     }
 
-    public Ronda findById(Long roundId) {
-        return rondaRepository.findById(roundId).orElse(null);
+    public Round findById(Long roundId) {
+        return roundRepository.findById(roundId).orElse(null);
     }
 }

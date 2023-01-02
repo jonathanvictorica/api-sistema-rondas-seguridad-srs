@@ -1,55 +1,53 @@
 package com.utn.frba.srs.mapper;
 
 import com.utn.frba.srs.controller.CustomerController;
-import com.utn.frba.srs.model.ClienteEmpresaSeguridad;
+import com.utn.frba.srs.model.Customer;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Component;
 
 @Mapper(componentModel = "spring")
+@Component
 public interface CustomerMapper {
 
-    CustomerMapper INSTANCE = Mappers.getMapper(CustomerMapper.class);
 
 
 
     @Mappings({
-            @Mapping(source="razonSocial", target="razonSocial"),
-            @Mapping(source="tipoDocumento", target="tipoDocumento"),
-            @Mapping(source="nroDocumento", target="nroDocumento"),
-            @Mapping(source="nombreCalle", target="domicilio.nombreCalle"),
-            @Mapping(source="altura", target="domicilio.altura"),
-            @Mapping(source="departamento", target="domicilio.departamento"),
-            @Mapping(source="piso", target="domicilio.piso"),
-            @Mapping(source="ciudad", target="domicilio.ciudad"),
-            @Mapping(source="partido", target="domicilio.partido"),
-            @Mapping(source="provincia", target="domicilio.provincia"),
-            @Mapping(source="pais", target="domicilio.pais"),
-            @Mapping(source="latitud", target="domicilio.ubicacion.latitud"),
-            @Mapping(source="longitud", target="domicilio.ubicacion.longitud"),
-            @Mapping(source="empresaSeguridadId", target="empresaSeguridad.id")
+            @Mapping(source="businessName", target="businessName"),
+            @Mapping(source="documentType", target="documentType"),
+            @Mapping(source="documentValue", target="documentValue"),
+            @Mapping(source="streetName", target="domicile.streetName"),
+            @Mapping(source="streetNumber", target="domicile.streetNumber"),
+            @Mapping(source="apartment", target="domicile.apartment"),
+            @Mapping(source="flat", target="domicile.flat"),
+            @Mapping(source="city", target="domicile.city"),
+            @Mapping(source="party", target="domicile.party"),
+            @Mapping(source="province", target="domicile.province"),
+            @Mapping(source="latitude", target="domicile.ubiety.latitude"),
+            @Mapping(source="longitude", target="domicile.ubiety.longitude"),
+            @Mapping(source="securityCompanyId", target="securityCompany.id")
 
     })
-    ClienteEmpresaSeguridad toClienteEmpresaSeguridad(CustomerController.CustomerDto entity);
+    Customer toCustomer(CustomerController.CustomerDto entity);
 
 
     @Mappings({
-            @Mapping(source="razonSocial", target="razonSocial"),
-            @Mapping(source="tipoDocumento", target="tipoDocumento"),
-            @Mapping(source="nroDocumento", target="nroDocumento"),
-            @Mapping(target="nombreCalle", source="domicilio.nombreCalle"),
-            @Mapping(target="altura", source="domicilio.altura"),
-            @Mapping(target="departamento", source="domicilio.departamento"),
-            @Mapping(target="piso", source="domicilio.piso"),
-            @Mapping(target="ciudad", source="domicilio.ciudad"),
-            @Mapping(target="partido", source="domicilio.partido"),
-            @Mapping(target="provincia", source="domicilio.provincia"),
-            @Mapping(target="pais", source="domicilio.pais"),
-            @Mapping(target="latitud", source="domicilio.ubicacion.latitud"),
-            @Mapping(target="longitud", source="domicilio.ubicacion.longitud"),
-            @Mapping(target="empresaSeguridadId", source="empresaSeguridad.id")
+            @Mapping(target="businessName", source="businessName"),
+            @Mapping(target="documentType", source="documentType"),
+            @Mapping(target="documentValue", source="documentValue"),
+            @Mapping(target="streetName", source="domicile.streetName"),
+            @Mapping(target="streetNumber", source="domicile.streetNumber"),
+            @Mapping(target="apartment", source="domicile.apartment"),
+            @Mapping(target="flat", source="domicile.flat"),
+            @Mapping(target="city", source="domicile.city"),
+            @Mapping(target="party", source="domicile.party"),
+            @Mapping(target="province", source="domicile.province"),
+            @Mapping(target="latitude", source="domicile.ubiety.latitude"),
+            @Mapping(target="longitude", source="domicile.ubiety.longitude"),
+            @Mapping(target="securityCompanyId", source="securityCompany.id")
 
     })
-    CustomerController.CustomerReduceDto toCustomerReduceDto(ClienteEmpresaSeguridad entity) ;
+    CustomerController.CustomerReduceDto toCustomerReduceDto(Customer entity) ;
 }

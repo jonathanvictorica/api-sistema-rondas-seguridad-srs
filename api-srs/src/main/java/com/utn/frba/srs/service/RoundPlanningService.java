@@ -1,7 +1,7 @@
 package com.utn.frba.srs.service;
 
-import com.utn.frba.srs.model.RondaPlanificacion;
-import com.utn.frba.srs.repository.RondaPlanificacionRepository;
+import com.utn.frba.srs.model.RoundPlanning;
+import com.utn.frba.srs.repository.RoundPlanningRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,30 +9,30 @@ import java.util.List;
 @Service
 public class RoundPlanningService {
 
-    private final RondaPlanificacionRepository rondaPlanificacionRepository;
+    private final RoundPlanningRepository roundPlanningRepository;
 
-    public RoundPlanningService(RondaPlanificacionRepository rondaPlanificacionRepository) {
-        this.rondaPlanificacionRepository = rondaPlanificacionRepository;
+    public RoundPlanningService(RoundPlanningRepository roundPlanningRepository) {
+        this.roundPlanningRepository = roundPlanningRepository;
     }
 
-    public List<RondaPlanificacion> findByRoundId(Long roundId) {
-        return rondaPlanificacionRepository.findByRonda_id(roundId);
+    public List<RoundPlanning> findByRoundId(Long roundId) {
+        return roundPlanningRepository.findByRound_id(roundId);
     }
 
-    public RondaPlanificacion findById(Long roundPlanningId) {
-        return rondaPlanificacionRepository.findById(roundPlanningId).orElse(null);
+    public RoundPlanning findById(Long roundPlanningId) {
+        return roundPlanningRepository.findById(roundPlanningId).orElse(null);
     }
 
     public void delete(Long roundPlanningId) {
-        rondaPlanificacionRepository.deleteById(roundPlanningId);
+        roundPlanningRepository.deleteById(roundPlanningId);
     }
 
-    public Long create(RondaPlanificacion roundPlanning) {
-        rondaPlanificacionRepository.save(roundPlanning);
+    public Long create(RoundPlanning roundPlanning) {
+        roundPlanningRepository.save(roundPlanning);
         return roundPlanning.getId();
     }
 
-    public void update(RondaPlanificacion roundPlanning) {
-        rondaPlanificacionRepository.save(roundPlanning);
+    public void update(RoundPlanning roundPlanning) {
+        roundPlanningRepository.save(roundPlanning);
     }
 }

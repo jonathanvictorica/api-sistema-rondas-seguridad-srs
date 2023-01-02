@@ -12,19 +12,21 @@ import java.util.List;
 public class RoundPlanningController {
 
     private final RoundPlanningService roundPlanningService;
+    private final RoundPlanningMapper mapper;
 
-    public RoundPlanningController(RoundPlanningService roundPlanningService) {
+    public RoundPlanningController(RoundPlanningService roundPlanningService, RoundPlanningMapper mapper) {
         this.roundPlanningService = roundPlanningService;
+        this.mapper = mapper;
     }
 
     @PostMapping
     Long create(@RequestBody RoundPlanningDto request) {
-        return roundPlanningService.create( RoundPlanningMapper.INSTANCE.toRondaPlanificacion(request));
+        return roundPlanningService.create( mapper.toRoundPlanning(request));
     }
 
-    @PutMapping("/{roundPlanningId}")
-    void update(@PathVariable("roundPlanningId") Long roundPlanningId, @RequestBody RoundPlanningDto request) {
-        roundPlanningService.update( RoundPlanningMapper.INSTANCE.toRondaPlanificacion(request));
+    @PutMapping
+    void update(@RequestBody RoundPlanningDto request) {
+        roundPlanningService.update( mapper.toRoundPlanning(request));
     }
 
     @DeleteMapping("/{roundPlanningId}")
@@ -34,13 +36,13 @@ public class RoundPlanningController {
 
     @GetMapping("/findById/{roundPlanningId}")
     RoundPlanningReduceDto findById(@PathVariable("roundPlanningId") Long roundPlanningId) {
-        return  RoundPlanningMapper.INSTANCE.toRoundPlanningDto(roundPlanningService.findById(roundPlanningId));
+        return  mapper.toRoundPlanningDto(roundPlanningService.findById(roundPlanningId));
 
     }
 
     @GetMapping("/findByRoundId/{roundId}")
-    List<RoundPlanningReduceDto> findByRoundId(@PathVariable("roundId") Long roundId) {
-        return roundPlanningService.findByRoundId(roundId).stream().map( RoundPlanningMapper.INSTANCE::toRoundPlanningDto).toList();
+    RoundPlanningListDto findByRoundId(@PathVariable("roundId") Long roundId) {
+        return new RoundPlanningListDto(roundPlanningService.findByRoundId(roundId).stream().map( mapper::toRoundPlanningDto).toList());
 
     }
 
@@ -57,6 +59,12 @@ public class RoundPlanningController {
             String dayName,
             LocalTime timeStart
     ) {
+    }
+
+    public record RoundPlanningListDto(
+            List<RoundPlanningReduceDto> plannings
+    ){
+
     }
 
 }

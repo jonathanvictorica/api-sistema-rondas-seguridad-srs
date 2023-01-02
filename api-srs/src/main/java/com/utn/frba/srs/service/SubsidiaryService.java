@@ -1,38 +1,38 @@
 package com.utn.frba.srs.service;
 
 
-import com.utn.frba.srs.model.SucursalCliente;
-import com.utn.frba.srs.repository.SucursalClienteRepository;
+import com.utn.frba.srs.model.Subsidiary;
+import com.utn.frba.srs.repository.SubsidiaryRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class SubsidiaryService {
-    private final SucursalClienteRepository sucursalClienteRepository;
+    private final SubsidiaryRepository subsidiaryRepository;
 
-    public SubsidiaryService(SucursalClienteRepository sucursalClienteRepository) {
-        this.sucursalClienteRepository = sucursalClienteRepository;
+    public SubsidiaryService(SubsidiaryRepository subsidiaryRepository) {
+        this.subsidiaryRepository = subsidiaryRepository;
     }
 
-    public Long create(SucursalCliente sucursalCliente) {
-        sucursalClienteRepository.save(sucursalCliente);
-        return sucursalCliente.getId();
+    public Long create(Subsidiary subsidiary) {
+        subsidiaryRepository.save(subsidiary);
+        return subsidiary.getId();
     }
 
-    public void update(SucursalCliente sucursalCliente) {
-        sucursalClienteRepository.save(sucursalCliente);
+    public void update(Subsidiary subsidiary) {
+        subsidiaryRepository.save(subsidiary);
     }
 
     public void delete(Long sucursalClienteId) {
-        sucursalClienteRepository.deleteById(sucursalClienteId);
+        subsidiaryRepository.deleteById(sucursalClienteId);
     }
 
-    public List<SucursalCliente> findByCustomer(Long customerId) {
-        return sucursalClienteRepository.findByClienteEmpresaSeguridad_id(customerId);
+    public List<Subsidiary> findByCustomer(Long customerId) {
+        return subsidiaryRepository.findByCustomer_id(customerId);
     }
 
-    public  SucursalCliente  findById(Long sucursalClienteId) {
-        return sucursalClienteRepository.findById(sucursalClienteId).orElse(null);
+    public Subsidiary findById(Long sucursalClienteId) {
+        return subsidiaryRepository.findById(sucursalClienteId).orElse(null);
     }
 }

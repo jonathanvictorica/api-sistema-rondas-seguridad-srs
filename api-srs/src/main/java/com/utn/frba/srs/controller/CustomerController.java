@@ -12,19 +12,22 @@ public class CustomerController {
 
     private final CustomerService customerService;
 
-    public CustomerController(CustomerService customerService) {
+    private final CustomerMapper mapper;
+
+    public CustomerController(CustomerService customerService, CustomerMapper mapper) {
         this.customerService = customerService;
+        this.mapper = mapper;
     }
 
     @PostMapping
     Long create(@RequestBody CustomerDto request) {
-        return customerService.create(CustomerMapper.INSTANCE.toClienteEmpresaSeguridad(request));
+        return customerService.create(mapper.toCustomer(request));
 
     }
 
     @PutMapping("/{customerId}")
     void update(@PathVariable("customerId") Long customerId, @RequestBody CustomerDto request) {
-        customerService.update(CustomerMapper.INSTANCE.toClienteEmpresaSeguridad(request));
+        customerService.update(mapper.toCustomer(request));
 
     }
 
@@ -36,57 +39,55 @@ public class CustomerController {
 
     @GetMapping("/all")
     public List<CustomerReduceDto> all() {
-        return customerService.all().stream().map(CustomerMapper.INSTANCE::toCustomerReduceDto).toList();
+        return customerService.all().stream().map(mapper::toCustomerReduceDto).toList();
 
     }
 
     @GetMapping("/findById/{customerId}")
     CustomerReduceDto findById(@PathVariable("customerId") Long customerId) {
-        return CustomerMapper.INSTANCE.toCustomerReduceDto(customerService.findById(customerId));
+        return mapper.toCustomerReduceDto(customerService.findById(customerId));
 
     }
 
     @GetMapping("/findByDocument/{type}/{value}")
     CustomerReduceDto findByDocument(@PathVariable("type") String type, @PathVariable("value") String value) {
-        return CustomerMapper.INSTANCE.toCustomerReduceDto(customerService.findByDocument(type, value));
+        return mapper.toCustomerReduceDto(customerService.findByDocument(type, value));
 
     }
 
 
     public record CustomerDto(
-            String empresaSeguridadId,
-            String razonSocial,
-            String tipoDocumento,
-            String nroDocumento,
-            String nombreCalle,
-            String altura,
-            String departamento,
-            String piso,
-            String ciudad,
-            String partido,
-            String provincia,
-            String pais,
-            String latitud,
-            String longitud
+            Long securityCompanyId,
+            String businessName,
+            String documentType,
+            String documentValue,
+            String streetName,
+            String streetNumber,
+            String apartment,
+            String flat,
+            String city,
+            String party,
+            String province,
+            String latitude,
+            String longitude
     ) {
     }
 
     public record CustomerReduceDto(
             Long id,
-            String empresaSeguridadId,
-            String razonSocial,
-            String tipoDocumento,
-            String nroDocumento,
-            String nombreCalle,
-            String altura,
-            String departamento,
-            String piso,
-            String ciudad,
-            String partido,
-            String provincia,
-            String pais,
-            String latitud,
-            String longitud
+            Long securityCompanyId,
+            String businessName,
+            String documentType,
+            String documentValue,
+            String streetName,
+            String streetNumber,
+            String apartment,
+            String flat,
+            String city,
+            String party,
+            String province,
+            String latitude,
+            String longitude
     ) {
     }
 }

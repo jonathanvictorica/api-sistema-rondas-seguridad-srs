@@ -15,7 +15,7 @@ public class RoundFinishEvent extends EventProducer<RoundFinishEvent.Data> {
 
     @Override
     protected String topic() {
-        return CatalogEvents.RoundFinishEvent;
+        return CatalogEvents.ROUND_FINISH_EVENT;
     }
 
     @Getter

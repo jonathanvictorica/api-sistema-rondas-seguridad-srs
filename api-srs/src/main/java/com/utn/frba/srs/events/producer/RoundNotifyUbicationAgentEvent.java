@@ -15,7 +15,7 @@ public class RoundNotifyUbicationAgentEvent  extends EventProducer<RoundNotifyUb
 
     @Override
     protected String topic() {
-        return CatalogEvents.RoundNotifyUbicationAgentEvent;
+        return CatalogEvents.ROUND_NOTIFY_UBICATION_AGENT_EVENT;
     }
 
     @Getter
@@ -23,7 +23,7 @@ public class RoundNotifyUbicationAgentEvent  extends EventProducer<RoundNotifyUb
     public static class Data implements Serializable {
         private Long roundExecuteId;
         private Long userAgentId;
-        private String latitud;
-        private String longitud;
+        private String latitude;
+        private String longitude;
     }
 }

@@ -6,9 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-    List<User> findByEmpresaSeguridad_id(Long empresaId);
+    List<User> findBySecurityCompany_id(Long empresaId);
 
-    List<User> findByRolPrincipal(String rol);
+    List<User> findByRole(String role);
 
-    User findTop1ByTipoDocumentoAndNroDocumento(String type, String value);
+    User findTop1ByDocumentTypeAndDocumentValue(String type, String value);
 }

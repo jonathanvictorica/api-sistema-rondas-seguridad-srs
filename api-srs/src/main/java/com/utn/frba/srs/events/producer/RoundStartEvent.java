@@ -15,7 +15,7 @@ public class RoundStartEvent  extends EventProducer<RoundStartEvent.Data> {
 
     @Override
     protected String topic() {
-        return CatalogEvents.RoundStartEvent;
+        return CatalogEvents.ROUND_START_EVENT;
     }
 
     @Getter

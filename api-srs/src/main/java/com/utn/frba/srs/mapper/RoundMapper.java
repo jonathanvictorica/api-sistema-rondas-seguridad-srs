@@ -1,39 +1,36 @@
 package com.utn.frba.srs.mapper;
 
 import com.utn.frba.srs.controller.RoundController;
-import com.utn.frba.srs.model.Ronda;
+import com.utn.frba.srs.model.Round;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Component;
 
 @Mapper(componentModel = "spring",uses = {RoundCheckpointMapper.class,RoundRutasMapper.class})
+@Component
 public interface RoundMapper {
 
-    RoundMapper INSTANCE = Mappers.getMapper(RoundMapper.class);
+
 
 
     @Mappings({
-            @Mapping(source="sucursalClienteId", target="sucursalCliente.id"),
-            @Mapping(source="nombre", target="nombre"),
-            @Mapping(source="descripcion", target="descripcion"),
-            @Mapping(source="latitudCentral", target="ubicacionCentral.latitud"),
-            @Mapping(source="longitudCentral", target="ubicacionCentral.longitud"),
-            @Mapping(source="ubicacionZoom", target="ubicacionZoom"),
+            @Mapping(source="id", target="id"),
+            @Mapping(source="subsidiaryId", target="subsidiary.id"),
+            @Mapping(source="name", target="name"),
+            @Mapping(source="description", target="description"),
             @Mapping(source="checkpoints", target="checkpoints"),
-            @Mapping(source="rutas", target="rutas")
+            @Mapping(source="routes", target="routes")
     })
-    Ronda toRonda(RoundController.RoundDto entity);
+    Round toRound(RoundController.RoundDto entity);
 
     @Mappings({
-            @Mapping(target="sucursalClienteId", source="sucursalCliente.id"),
-            @Mapping(target="nombre", source="nombre"),
-            @Mapping(target="descripcion", source="descripcion"),
-            @Mapping(target="latitudCentral", source="ubicacionCentral.latitud"),
-            @Mapping(target="longitudCentral", source="ubicacionCentral.longitud"),
-            @Mapping(target="ubicacionZoom", source="ubicacionZoom"),
+            @Mapping(target="id", source="id"),
+            @Mapping(target="subsidiaryId", source="subsidiary.id"),
+            @Mapping(target="name", source="name"),
+            @Mapping(target="description", source="description"),
             @Mapping(target="checkpoints", source="checkpoints"),
-            @Mapping(source="rutas", target="rutas")
+            @Mapping(target="routes", source="routes")
     })
-    RoundController.RoundReduceDto toRoundReduceDto(Ronda entity);
+    RoundController.RoundReduceDto toRoundReduceDto(Round entity);
 }

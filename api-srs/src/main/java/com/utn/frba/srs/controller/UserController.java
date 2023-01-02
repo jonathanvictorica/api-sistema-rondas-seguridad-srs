@@ -13,19 +13,21 @@ import java.util.stream.Collectors;
 public class UserController {
 
     private final UserService userService;
+    private final UserMapper mapper;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserMapper mapper) {
         this.userService = userService;
+        this.mapper = mapper;
     }
 
     @PostMapping
     Long create(@RequestBody UsuarioDto request) {
-        return userService.create(UserMapper.INSTANCE.toUser(request));
+        return userService.create(mapper.toUser(request));
     }
 
     @PutMapping("/{userId}")
     void update(@PathVariable("userId") Long userId, @RequestBody UsuarioDto request) {
-        userService.update(UserMapper.INSTANCE.toUser(request));
+        userService.update(mapper.toUser(request));
     }
 
     @DeleteMapping("/{userId}")
@@ -35,22 +37,22 @@ public class UserController {
 
     @GetMapping("/findByEmpresa/{empresaId}")
     List<UsuarioReduceDto> findByEmpresa(@PathVariable("empresaId") Long empresaId) {
-        return userService.findByEmpresa(empresaId).stream().map(UserMapper.INSTANCE::toUsuarioReduceDto).collect(Collectors.toList());
+        return userService.findByEmpresa(empresaId).stream().map(mapper::toUsuarioReduceDto).collect(Collectors.toList());
     }
 
     @GetMapping("/findByRol/{rol}")
     List<UsuarioReduceDto> findByRol(@PathVariable("rol") String rol) {
-        return userService.findByRol(rol).stream().map(UserMapper.INSTANCE::toUsuarioReduceDto).collect(Collectors.toList());
+        return userService.findByRol(rol).stream().map(mapper::toUsuarioReduceDto).collect(Collectors.toList());
     }
 
     @GetMapping("/findById/{userId}")
     UsuarioReduceDto findById(@PathVariable("userId") Long userId) {
-        return UserMapper.INSTANCE.toUsuarioReduceDto(userService.findById(userId));
+        return mapper.toUsuarioReduceDto(userService.findById(userId));
     }
 
     @GetMapping("/findByDocument/{type}/{value}")
     UsuarioReduceDto findByDocument(@PathVariable("type") String type, @PathVariable("value") String value) {
-        return UserMapper.INSTANCE.toUsuarioReduceDto(userService.findByDocument(type, value));
+        return mapper.toUsuarioReduceDto(userService.findByDocument(type, value));
     }
 
     @GetMapping("/roles")
@@ -60,28 +62,28 @@ public class UserController {
 
 
    public record UsuarioDto(
-            Long empresaSeguridadId,
-            String nombre,
-            String apellido,
-            String tipoDocumento,
-            String nroDocumento,
+            Long securityCompanyId,
+            String name,
+            String lastname,
+            String documentType,
+            String documentValue,
             String mail ,
-            String rolPrincipal,
-            Boolean usuarioActivo
+            String rol,
+            Boolean active
     ) {
     }
 
 
     public record UsuarioReduceDto(
             Long id,
-            Long empresaSeguridadId,
-            String nombre,
-            String apellido,
-            String tipoDocumento,
-            String nroDocumento,
+            Long securityCompanyId,
+            String name,
+            String lastname,
+            String documentType,
+            String documentValue,
             String mail ,
-            String rolPrincipal,
-            Boolean usuarioActivo
+            String rol,
+            Boolean active
     ) {
     }
 }

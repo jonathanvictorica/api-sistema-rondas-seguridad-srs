@@ -1,28 +1,29 @@
 package com.utn.frba.srs.mapper;
 
 import com.utn.frba.srs.controller.RoundController;
-import com.utn.frba.srs.model.RondaRuta;
+import com.utn.frba.srs.model.RoundRoute;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Component;
 
 @Mapper(componentModel = "spring")
+@Component
 public interface RoundRutasMapper {
 
-    RoundRutasMapper INSTANCE = Mappers.getMapper(RoundRutasMapper.class);
+
 
     @Mappings({
-            @Mapping(source="latitud", target="ubicacion.latitud"),
-            @Mapping(source="longitud", target="ubicacion.longitud"),
+            @Mapping(source="latitude", target="ubiety.latitude"),
+            @Mapping(source="longitude", target="ubiety.longitude"),
             @Mapping(source="order", target="ordenCaminoRuta")
     })
-    RondaRuta toRoundRutas(RoundController.RoundRutaDto entity);
+    RoundRoute toRoundRoute(RoundController.RoundRouteDto entity);
 
     @Mappings({
-            @Mapping(target="latitud", source="ubicacion.latitud"),
-            @Mapping(target="longitud", source="ubicacion.longitud"),
+            @Mapping(target="latitude", source= "ubiety.latitude"),
+            @Mapping(target="longitude", source= "ubiety.longitude"),
             @Mapping(target="order", source="ordenCaminoRuta")
     })
-    RoundController.RoundRutaDto toRoundRutaDto(RondaRuta entity);
+    RoundController.RoundRouteDto toRoundRutaDto(RoundRoute entity);
 }

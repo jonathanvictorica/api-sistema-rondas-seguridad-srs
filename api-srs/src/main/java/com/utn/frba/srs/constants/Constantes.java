@@ -1,7 +1,5 @@
 package com.utn.frba.srs.constants;
 
-import com.utn.frba.srs.exception.CatalogoErrores;
-
 public class Constantes {
 
 	public static final String RONDA_EJECUCION_START = "START";
@@ -13,11 +11,8 @@ public class Constantes {
     public static final String ROL_VIGILANTE = "ROL_VIGILANTE";
 	public static final String ROL_ADMIN = "ROL_ADMIN";
 	public static final String ROL_SUPERVISOR ="ROL_SUPERVISOR" ;
-	public static String SEVERIDAD_OK = "OK";
-	public static String SEVERIDAD_ERROR = "ERROR";
-	public static String SEVERIDAD_WARNING = "WARN";
+    public static final String RONDA_EJECUCION_REVISION = "REVISION";
 
-	public static Integer MINUTOS_VIGENTES = 500;
 
 
 }

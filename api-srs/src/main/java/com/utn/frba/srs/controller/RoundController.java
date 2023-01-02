@@ -1,5 +1,6 @@
 package com.utn.frba.srs.controller;
 
+import com.utn.frba.srs.exception.SRSException;
 import com.utn.frba.srs.mapper.RoundMapper;
 import com.utn.frba.srs.service.RoundService;
 import org.springframework.web.bind.annotation.*;
@@ -11,20 +12,23 @@ import java.util.List;
 public class RoundController {
 
     private final RoundService roundService;
+    private final RoundMapper mapper;
 
-    public RoundController(RoundService roundService) {
+
+    public RoundController(RoundService roundService, RoundMapper mapper) {
         this.roundService = roundService;
+        this.mapper = mapper;
     }
 
     @PostMapping
-    Long create(@RequestBody RoundDto request) {
-        return roundService.create(RoundMapper.INSTANCE.toRonda(request));
+    Long create(@RequestBody RoundDto request) throws SRSException {
+        return roundService.create(mapper.toRound(request));
 
     }
 
-    @PutMapping("/{roundId}")
-    void update(@PathVariable("roundId") Long roundId, @RequestBody RoundDto request) {
-        roundService.update(RoundMapper.INSTANCE.toRonda(request));
+    @PutMapping
+    void update( @RequestBody RoundDto request) throws SRSException {
+        roundService.update(mapper.toRound(request));
 
     }
 
@@ -35,55 +39,50 @@ public class RoundController {
 
     @GetMapping("/findBySubsidiary/{subsidiaryId}")
     List<RoundReduceDto> findBySubsidiary(@PathVariable("subsidiaryId") Long subsidiaryId) {
-        return roundService.findBySubsidiary(subsidiaryId).stream().map(RoundMapper.INSTANCE::toRoundReduceDto).toList();
+        return roundService.findBySubsidiary(subsidiaryId).stream().map(mapper::toRoundReduceDto).toList();
 
     }
 
     @GetMapping("/findByCustomer/{customerId}")
     List<RoundReduceDto> findByCustomer(@PathVariable("customerId") Long customerId) {
-        return roundService.findByCustomer(customerId).stream().map(RoundMapper.INSTANCE::toRoundReduceDto).toList();
+        return roundService.findByCustomer(customerId).stream().map(mapper::toRoundReduceDto).toList();
 
     }
 
     @GetMapping("/findById/{roundId}")
     RoundReduceDto findById(@PathVariable("roundId") Long roundId) {
-        return RoundMapper.INSTANCE.toRoundReduceDto(roundService.findById(roundId));
+        return mapper.toRoundReduceDto(roundService.findById(roundId));
 
     }
 
     public record RoundCheckPointDto(
-            String identificadorNFC,
-            Integer order
+            String nfcCode,
+            Integer executionOrder
     ){}
 
-    public   record RoundRutaDto(
+    public   record RoundRouteDto(
             Integer order,
-            String latitud,
-            String longitud
+            String latitude,
+            String longitude
     ){}
     public  record RoundDto(
-            Long sucursalClienteId,
-            String nombre,
-            String descripcion,
-            String latitudCentral,
-            String longitudCentral,
-            String ubicacionZoom,
+            Long id,
+            Long subsidiaryId,
+            String name,
+            String description,
             List<RoundCheckPointDto> checkpoints,
-            List<RoundRutaDto> rutas
+            List<RoundRouteDto> routes
     ) {
     }
 
 
     public   record RoundReduceDto(
-            Long roundId,
-            Long sucursalClienteId,
-            String nombre,
-            String descripcion,
-            String latitudCentral,
-            String longitudCentral,
-            String ubicacionZoom,
+            Long id,
+            Long subsidiaryId,
+            String name,
+            String description,
             List<RoundCheckPointDto> checkpoints,
-            List<RoundRutaDto> rutas
+            List<RoundRouteDto> routes
     ) {
     }
 }

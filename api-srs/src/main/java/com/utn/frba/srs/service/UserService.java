@@ -28,11 +28,11 @@ public class UserService {
     }
 
     public List<User> findByEmpresa(Long empresaId) {
-        return userRepository.findByEmpresaSeguridad_id(empresaId);
+        return userRepository.findBySecurityCompany_id(empresaId);
     }
 
     public List<User> findByRol(String rol) {
-        return userRepository.findByRolPrincipal(rol);
+        return userRepository.findByRole(rol);
     }
 
     public User findById(Long userId) {
@@ -40,6 +40,6 @@ public class UserService {
     }
 
     public User findByDocument(String type, String value) {
-        return userRepository.findTop1ByTipoDocumentoAndNroDocumento(type,value);
+        return userRepository.findTop1ByDocumentTypeAndDocumentValue(type,value);
     }
 }

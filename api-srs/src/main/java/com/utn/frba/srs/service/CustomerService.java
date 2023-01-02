@@ -1,7 +1,7 @@
 package com.utn.frba.srs.service;
 
-import com.utn.frba.srs.model.ClienteEmpresaSeguridad;
-import com.utn.frba.srs.repository.ClienteEmpresaSeguridadRepository;
+import com.utn.frba.srs.model.Customer;
+import com.utn.frba.srs.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,35 +9,35 @@ import java.util.List;
 @Service
 public class CustomerService {
 
-    private final ClienteEmpresaSeguridadRepository clienteEmpresaSeguridadRepository;
+    private final CustomerRepository customerRepository;
 
-    public CustomerService(ClienteEmpresaSeguridadRepository clienteEmpresaSeguridadRepository) {
-        this.clienteEmpresaSeguridadRepository = clienteEmpresaSeguridadRepository;
+    public CustomerService(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
     }
 
-    public Long create(ClienteEmpresaSeguridad clienteEmpresaSeguridad) {
+    public Long create(Customer clienteEmpresaSeguridad) {
 
-        clienteEmpresaSeguridadRepository.save(clienteEmpresaSeguridad);
+        customerRepository.save(clienteEmpresaSeguridad);
         return clienteEmpresaSeguridad.getId();
     }
 
-    public void update(ClienteEmpresaSeguridad clienteEmpresaSeguridad) {
-        clienteEmpresaSeguridadRepository.save(clienteEmpresaSeguridad);
+    public void update(Customer clienteEmpresaSeguridad) {
+        customerRepository.save(clienteEmpresaSeguridad);
     }
 
     public void delete(Long customerId) {
-        clienteEmpresaSeguridadRepository.deleteById(customerId);
+        customerRepository.deleteById(customerId);
     }
 
-    public List<ClienteEmpresaSeguridad> all() {
-        return clienteEmpresaSeguridadRepository.findAll();
+    public List<Customer> all() {
+        return customerRepository.findAll();
     }
 
-    public ClienteEmpresaSeguridad findById(Long customerId) {
-        return clienteEmpresaSeguridadRepository.findById(customerId).orElse(null);
+    public Customer findById(Long customerId) {
+        return customerRepository.findById(customerId).orElse(null);
     }
 
-    public ClienteEmpresaSeguridad findByDocument(String type, String value) {
-        return clienteEmpresaSeguridadRepository.findTop1ByTipoDocumentoAndNroDocumento(type,value);
+    public Customer findByDocument(String type, String value) {
+        return customerRepository.findTop1ByDocumentTypeAndDocumentValue(type,value);
     }
 }

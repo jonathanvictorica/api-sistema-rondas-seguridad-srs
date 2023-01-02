@@ -10,19 +10,21 @@ import java.util.List;
 @RequestMapping("/api/v1/srs/company-security")
 public class CompanySecurityController {
     private final CompanySecurityService companySecurityService;
+    private final CompanySecurityMapper mapper;
 
-    public CompanySecurityController(CompanySecurityService companySecurityService) {
+    public CompanySecurityController(CompanySecurityService companySecurityService, CompanySecurityMapper mapper) {
         this.companySecurityService = companySecurityService;
+        this.mapper = mapper;
     }
 
     @PostMapping
     public Long create(@RequestBody CompanySecurityDto request) {
-        return companySecurityService.create(CompanySecurityMapper.INSTANCE.toEmpresaSeguridad(request));
+        return companySecurityService.create(mapper.toSecurityCompany(request));
     }
 
     @PutMapping("/{companySecurityId}")
     void update(@PathVariable("companySecurityId") Long companySecurityId, @RequestBody CompanySecurityDto request){
-        companySecurityService.update(CompanySecurityMapper.INSTANCE.toEmpresaSeguridad(request));
+        companySecurityService.update(mapper.toSecurityCompany(request));
     }
 
     @DeleteMapping("/{companySecurityId}")
@@ -32,53 +34,51 @@ public class CompanySecurityController {
 
     @GetMapping("/all")
     List<CompanySecurityReduceDto> all() {
-        return companySecurityService.all().stream().map(CompanySecurityMapper.INSTANCE::toCompanySecurityReduceDto).toList();
+        return companySecurityService.all().stream().map(mapper::toCompanySecurityReduceDto).toList();
     }
 
     @GetMapping("/findById/{companySecurityId}")
     CompanySecurityReduceDto findById(@PathVariable("companySecurityId") Long companySecurityId) {
-        return CompanySecurityMapper.INSTANCE.toCompanySecurityReduceDto(companySecurityService.findById(companySecurityId));
+        return mapper.toCompanySecurityReduceDto(companySecurityService.findById(companySecurityId));
     }
 
     @GetMapping("/findByDocument/{type}/{value}")
     CompanySecurityReduceDto findByDocument(@PathVariable("type") String type, @PathVariable("value") String value) {
-        return CompanySecurityMapper.INSTANCE.toCompanySecurityReduceDto(companySecurityService.findByDocument(type, value));
+        return mapper.toCompanySecurityReduceDto(companySecurityService.findByDocument(type, value));
     }
 
 
     public   record CompanySecurityDto(
-            String razonSocial,
-            String tipoDocumento,
-            String nroDocumento,
-            String nombreCalle,
-            String altura,
-            String departamento,
-            String piso,
-            String ciudad,
-            String partido,
-            String provincia,
-            String pais ,
-            String latitud,
-            String longitud
+            String businessName,
+            String documentType,
+            String documentValue,
+            String streetName,
+            String streetNumber,
+            String apartment,
+            String flat,
+            String city,
+            String party,
+            String province,
+            String latitude,
+            String longitude
 
     ) {
     }
 
     public   record CompanySecurityReduceDto(
             Long id,
-            String razonSocial,
-            String tipoDocumento,
-            String nroDocumento,
-            String nombreCalle,
-            String altura,
-            String departamento,
-            String piso,
-            String ciudad,
-            String partido,
-            String provincia,
-            String pais ,
-            String latitud,
-            String longitud
+            String businessName,
+            String documentType,
+            String documentValue,
+            String streetName,
+            String streetNumber,
+            String apartment,
+            String flat,
+            String city,
+            String party,
+            String province,
+            String latitude,
+            String longitude
     ) {
     }
 }

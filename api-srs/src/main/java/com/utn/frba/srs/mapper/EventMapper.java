@@ -6,12 +6,12 @@ import com.utn.frba.srs.events.producer.RoundMarkCheckpointEvent;
 import com.utn.frba.srs.events.producer.RoundNotifyUbicationAgentEvent;
 import com.utn.frba.srs.events.producer.RoundStartEvent;
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Component;
 
 @Mapper(componentModel = "spring")
+@Component
 public interface EventMapper {
 
-    EventMapper INSTANCE = Mappers.getMapper(EventMapper.class);
 
     RoundStartEvent.Data toRoundStartEvent(RoundExecuteCommandController.StartRoundDto entity);
 

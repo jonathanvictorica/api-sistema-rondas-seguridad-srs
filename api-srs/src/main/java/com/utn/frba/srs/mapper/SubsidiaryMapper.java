@@ -1,52 +1,51 @@
 package com.utn.frba.srs.mapper;
 
 import com.utn.frba.srs.controller.SubsidiaryController;
-import com.utn.frba.srs.model.SucursalCliente;
+import com.utn.frba.srs.model.Subsidiary;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Component;
 
 @Mapper(componentModel = "spring")
+@Component
 public interface SubsidiaryMapper {
 
-    SubsidiaryMapper INSTANCE = Mappers.getMapper(SubsidiaryMapper.class);
 
-
-    @Mappings({
-            @Mapping(source="nombre", target="nombre"),
-            @Mapping(source="descripcion", target="descripcion"),
-            @Mapping(source="nombreCalle", target="domicilio.nombreCalle"),
-            @Mapping(source="altura", target="domicilio.altura"),
-            @Mapping(source="departamento", target="domicilio.departamento"),
-            @Mapping(source="piso", target="domicilio.piso"),
-            @Mapping(source="ciudad", target="domicilio.ciudad"),
-            @Mapping(source="partido", target="domicilio.partido"),
-            @Mapping(source="provincia", target="domicilio.provincia"),
-            @Mapping(source="pais", target="domicilio.pais"),
-            @Mapping(source="latitud", target="domicilio.ubicacion.latitud"),
-            @Mapping(source="longitud", target="domicilio.ubicacion.longitud"),
-            @Mapping(source="clienteSeguridadId", target="clienteEmpresaSeguridad.id")
-
-    })
-    SucursalCliente toSucursalCliente(SubsidiaryController.SubsidiaryDto entity);
 
 
     @Mappings({
-            @Mapping(target="nombre", source="nombre"),
-            @Mapping(target="descripcion", source="descripcion"),
-            @Mapping(target="nombreCalle", source="domicilio.nombreCalle"),
-            @Mapping(target="altura", source="domicilio.altura"),
-            @Mapping(target="departamento", source="domicilio.departamento"),
-            @Mapping(target="piso", source="domicilio.piso"),
-            @Mapping(target="ciudad", source="domicilio.ciudad"),
-            @Mapping(target="partido", source="domicilio.partido"),
-            @Mapping(target="provincia", source="domicilio.provincia"),
-            @Mapping(target="pais", source="domicilio.pais"),
-            @Mapping(target="latitud", source="domicilio.ubicacion.latitud"),
-            @Mapping(target="longitud", source="domicilio.ubicacion.longitud"),
-            @Mapping(target="clienteSeguridadId", source="clienteEmpresaSeguridad.id")
+            @Mapping(source="name", target="name"),
+            @Mapping(source="description", target="description"),
+            @Mapping(source="streetName", target="domicile.streetName"),
+            @Mapping(source="streetNumber", target="domicile.streetNumber"),
+            @Mapping(source="apartment", target="domicile.apartment"),
+            @Mapping(source="flat", target="domicile.flat"),
+            @Mapping(source="city", target="domicile.city"),
+            @Mapping(source="party", target="domicile.party"),
+            @Mapping(source="province", target="domicile.province"),
+            @Mapping(source="latitude", target="domicile.ubiety.latitude"),
+            @Mapping(source="longitude", target="domicile.ubiety.longitude"),
+            @Mapping(source="customerId", target="customer.id")
 
     })
-    SubsidiaryController.SubsidiaryReduceDto toSubsidiaryReduceDto(SucursalCliente entity) ;
+    Subsidiary toSubsidiary(SubsidiaryController.SubsidiaryDto entity);
+
+
+    @Mappings({
+            @Mapping(target="name", source="name"),
+            @Mapping(target="description", source="description"),
+            @Mapping(target="streetName", source="domicile.streetName"),
+            @Mapping(target="streetNumber", source="domicile.streetNumber"),
+            @Mapping(target="apartment", source="domicile.apartment"),
+            @Mapping(target="flat", source="domicile.flat"),
+            @Mapping(target="city", source="domicile.city"),
+            @Mapping(target="party", source="domicile.party"),
+            @Mapping(target="province", source="domicile.province"),
+            @Mapping(target="latitude", source="domicile.ubiety.latitude"),
+            @Mapping(target="longitude", source="domicile.ubiety.longitude"),
+            @Mapping(target="customerId", source="customer.id")
+
+    })
+    SubsidiaryController.SubsidiaryReduceDto toSubsidiaryReduceDto(Subsidiary entity) ;
 }

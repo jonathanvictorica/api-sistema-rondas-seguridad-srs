@@ -17,34 +17,36 @@ public class RoundExecuteCommandController {
     private final RoundMarkCheckpointEvent roundMarkCheckpointEvent;
     private final RoundNotifyUbicationAgentEvent roundNotifyUbicationAgentEvent;
     private final RoundStartEvent roundStartEvent;
+    private final EventMapper mapper;
 
-    public RoundExecuteCommandController(RoundFinishEvent roundFinishEvent, RoundMarkCheckpointEvent roundMarkCheckpointEvent, RoundNotifyUbicationAgentEvent roundNotifyUbicationAgentEvent, RoundStartEvent roundStartEvent) {
+    public RoundExecuteCommandController(RoundFinishEvent roundFinishEvent, RoundMarkCheckpointEvent roundMarkCheckpointEvent, RoundNotifyUbicationAgentEvent roundNotifyUbicationAgentEvent, RoundStartEvent roundStartEvent, EventMapper mapper) {
         this.roundFinishEvent = roundFinishEvent;
         this.roundMarkCheckpointEvent = roundMarkCheckpointEvent;
         this.roundNotifyUbicationAgentEvent = roundNotifyUbicationAgentEvent;
         this.roundStartEvent = roundStartEvent;
+        this.mapper = mapper;
     }
 
     @PostMapping("/startRound")
     void startRound(StartRoundDto request) {
-        roundStartEvent.publishEvent(EventMapper.INSTANCE.toRoundStartEvent(request));
+        roundStartEvent.publishEvent(mapper.toRoundStartEvent(request));
     }
 
     @PostMapping("/markCheckpoint")
     void markCheckpoint(MarkCheckpointDto request) {
-        roundMarkCheckpointEvent.publishEvent(EventMapper.INSTANCE.toRoundMarkCheckpointEvent(request));
+        roundMarkCheckpointEvent.publishEvent(mapper.toRoundMarkCheckpointEvent(request));
     }
 
     @PostMapping("/finishRound")
     void finishRound(FinishRoundDto request) {
-        roundFinishEvent.publishEvent(EventMapper.INSTANCE.toRoundFinishEvent(request));
+        roundFinishEvent.publishEvent(mapper.toRoundFinishEvent(request));
     }
 
 
 
     @PostMapping("/notifyLocationAgentOnline")
     void notifyLocationAgentOnline(NotifyLocationAgentOnlineDto request) {
-        roundNotifyUbicationAgentEvent.publishEvent(EventMapper.INSTANCE.toRoundNotifyUbicationAgentEvent(request));
+        roundNotifyUbicationAgentEvent.publishEvent(mapper.toRoundNotifyUbicationAgentEvent(request));
     }
 
 
@@ -59,9 +61,9 @@ public class RoundExecuteCommandController {
     public record MarkCheckpointDto(
             Long roundExecuteId,
             Long userAgentId,
-            String latitud,
-            String longitud,
-            String nfcIdentificador
+            String latitude,
+            String longitude,
+            String nfcCode
 
     ) {
 
@@ -78,8 +80,8 @@ public class RoundExecuteCommandController {
     public record NotifyLocationAgentOnlineDto(
             Long roundExecuteId,
             Long userAgentId,
-            String latitud,
-            String longitud
+            String latitude,
+            String longitude
     ) {
 
     }

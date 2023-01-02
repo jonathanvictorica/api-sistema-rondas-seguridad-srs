@@ -5,19 +5,20 @@ import com.utn.frba.srs.model.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Component;
 
 @Mapper(componentModel = "spring")
+@Component
 public interface UserMapper {
 
-    UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
+
     @Mappings({
-            @Mapping(source="empresaSeguridadId", target="empresaSeguridad.id")
+            @Mapping(source="securityCompanyId", target="securityCompany.id")
     })
     User toUser(UserController.UsuarioDto entity);
 
     @Mappings({
-            @Mapping(target="empresaSeguridadId", source="empresaSeguridad.id")
+            @Mapping(target="securityCompanyId", source= "securityCompany.id")
     })
     UserController.UsuarioReduceDto toUsuarioReduceDto(User entity) ;
 }
