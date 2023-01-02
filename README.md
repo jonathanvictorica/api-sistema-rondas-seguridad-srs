@@ -15,6 +15,9 @@ Proyecto Final de la Carrera Ingenieria en Sistemas de Información UTN FRBA
 Parebens
 
 ## 🚀 Arquitectura
+![Diagrama de Componentes](https://myoctocat.com/assets/images/base-octocat.svg)
+
+
 
 Parebens
 
