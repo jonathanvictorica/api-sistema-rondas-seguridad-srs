@@ -27,7 +27,7 @@ public class RoundController {
     }
 
     @PutMapping
-    void update( @RequestBody RoundDto request) throws SRSException {
+    void update(@RequestBody RoundDto request) throws SRSException {
         roundService.update(mapper.toRound(request));
 
     }
@@ -58,14 +58,17 @@ public class RoundController {
     public record RoundCheckPointDto(
             String nfcCode,
             Integer executionOrder
-    ){}
+    ) {
+    }
 
-    public   record RoundRouteDto(
+    public record RoundRouteDto(
             Integer order,
             String latitude,
             String longitude
-    ){}
-    public  record RoundDto(
+    ) {
+    }
+
+    public record RoundDto(
             Long id,
             Long subsidiaryId,
             String name,
@@ -76,7 +79,7 @@ public class RoundController {
     }
 
 
-    public   record RoundReduceDto(
+    public record RoundReduceDto(
             Long id,
             Long subsidiaryId,
             String name,

@@ -6,6 +6,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
+
 @Component
 public class RoundFinishEvent extends EventProducer<RoundFinishEvent.Data> {
 

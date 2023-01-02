@@ -13,12 +13,12 @@ public interface UserMapper {
 
 
     @Mappings({
-            @Mapping(source="securityCompanyId", target="securityCompany.id")
+            @Mapping(source = "securityCompanyId", target = "securityCompany.id")
     })
     User toUser(UserController.UsuarioDto entity);
 
     @Mappings({
-            @Mapping(target="securityCompanyId", source= "securityCompany.id")
+            @Mapping(target = "securityCompanyId", source = "securityCompany.id")
     })
-    UserController.UsuarioReduceDto toUsuarioReduceDto(User entity) ;
+    UserController.UsuarioReduceDto toUsuarioReduceDto(User entity);
 }

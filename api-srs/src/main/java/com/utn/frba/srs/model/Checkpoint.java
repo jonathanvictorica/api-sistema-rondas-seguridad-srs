@@ -14,21 +14,17 @@ import javax.persistence.*;
 @Builder
 public class Checkpoint {
 
-	@Id
-	private String nfcCode;
+    @Id
+    private String nfcCode;
 
-	@Embedded
-	private Ubiety ubiety;
-
-
-	@ManyToOne
-	@JoinColumn
-	private Subsidiary subsidiary;
-	private Boolean active = true;
+    @Embedded
+    private Ubiety ubiety;
 
 
-
-
+    @ManyToOne
+    @JoinColumn
+    private Subsidiary subsidiary;
+    private Boolean active = true;
 
 
 }

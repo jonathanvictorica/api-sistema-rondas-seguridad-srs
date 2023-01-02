@@ -43,7 +43,7 @@ public class SubsidiaryController {
         return mapper.toSubsidiaryReduceDto(subsidiaryService.findById(subsidiaryId));
     }
 
-    public  record SubsidiaryDto(
+    public record SubsidiaryDto(
             Long id,
             String name,
             String description,
@@ -61,20 +61,20 @@ public class SubsidiaryController {
     ) {
     }
 
-    public    record SubsidiaryReduceDto(
+    public record SubsidiaryReduceDto(
             Long id,
-             String name,
-             String description,
-             String streetName,
-             String streetNumber,
-             String apartment,
-             String flat,
-             String city,
-             String party,
-             String province,
-             String latitude,
-             String longitude,
-             Long customerId
+            String name,
+            String description,
+            String streetName,
+            String streetNumber,
+            String apartment,
+            String flat,
+            String city,
+            String party,
+            String province,
+            String latitude,
+            String longitude,
+            Long customerId
 
     ) {
     }

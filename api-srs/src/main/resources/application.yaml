@@ -1,0 +1,36 @@
+server:
+  servlet:
+    context-path: /api-srs
+spring:
+  application:
+    name: api-srs
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    password: ''
+    url: jdbc:mysql://localhost:3306/srs-dev
+    username: root
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  kafka:
+    consumer:
+      auto-offset-reset: earliest
+      bootstrap-servers: localhost:9092
+      enable-auto-commit: true
+      group-id: group-id
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: '*'
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher

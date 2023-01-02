@@ -1,6 +1,6 @@
 package com.utn.frba.srs.service;
 
-import com.utn.frba.srs.exception.CatalogoErrores;
+import com.utn.frba.srs.exception.CatalogErrors;
 import com.utn.frba.srs.exception.SRSException;
 import com.utn.frba.srs.model.Round;
 import com.utn.frba.srs.model.RoundCheckpoint;
@@ -47,12 +47,12 @@ public class RoundService {
     }
 
     private void preValidateRound(Round round) throws SRSException {
-        subsidiaryRepository.findById(round.getSubsidiary().getId()).orElseThrow(() -> new SRSException(CatalogoErrores.SUCURSAL_NO_EXISTE));
+        subsidiaryRepository.findById(round.getSubsidiary().getId()).orElseThrow(() -> new SRSException(CatalogErrors.SUBSIDIARY_NOT_FOUND));
         if (CollectionUtils.isEmpty(round.getCheckpoints())) {
-            throw new SRSException(CatalogoErrores.RONDA_SIN_CHECKPOINTS);
+            throw new SRSException(CatalogErrors.ROUND_WITHOUT_CHECKPOINTS);
         }
         if (CollectionUtils.isEmpty(round.getRoutes())) {
-            throw new SRSException(CatalogoErrores.RONDA_SIN_RUTAS);
+            throw new SRSException(CatalogErrors.ROUND_WITHOUT_ROUTES);
         }
     }
 

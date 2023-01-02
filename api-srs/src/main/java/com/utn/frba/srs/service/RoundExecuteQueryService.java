@@ -1,6 +1,6 @@
 package com.utn.frba.srs.service;
 
-import com.utn.frba.srs.constants.Constantes;
+import com.utn.frba.srs.constants.Constants;
 import com.utn.frba.srs.model.RoundExecute;
 import com.utn.frba.srs.repository.RoundExecuteRepository;
 import org.springframework.stereotype.Service;
@@ -21,10 +21,10 @@ public class RoundExecuteQueryService {
     }
 
     public List<RoundExecute> findRoundPendingBySubsidiary(Long subsidiaryId) {
-        return roundExecuteRepository.findByRound_subsidiary_IdAndState(subsidiaryId, Constantes.RONDA_EJECUCION_PENDIENTE);
+        return roundExecuteRepository.findByRound_subsidiary_IdAndState(subsidiaryId, Constants.ROUND_EXECUTE_PENDING);
     }
 
     public List<RoundExecute> findByStateRevision() {
-        return roundExecuteRepository.findByState(Constantes.RONDA_EJECUCION_REVISION);
+        return roundExecuteRepository.findByState(Constants.ROUND_EXECUTE_REVISION);
     }
 }

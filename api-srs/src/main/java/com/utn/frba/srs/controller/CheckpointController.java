@@ -30,9 +30,9 @@ public class CheckpointController {
         checkpointService.update(mapper.toCheckpoint(request));
     }
 
-    @DeleteMapping("/{nfcIdentify}")
-    public void delete(@PathVariable String nfcIdentify) {
-        checkpointService.delete(nfcIdentify);
+    @DeleteMapping("/{nfcCode}")
+    public void delete(@PathVariable String nfcCode) {
+        checkpointService.delete(nfcCode);
     }
 
     @GetMapping("/findBySubsidiary/{subsidiaryId}")
@@ -40,9 +40,9 @@ public class CheckpointController {
         return new CheckpointReduceListDto(checkpointService.findBySubsidiary(subsidiaryId).stream().map(mapper::toCheckpointReduceDto).toList());
     }
 
-    @GetMapping("/findById/{checkpointNfc}")
-    public CheckpointReduceDto findById(@PathVariable String checkpointNfc) {
-        return mapper.toCheckpointReduceDto(checkpointService.findById(checkpointNfc));
+    @GetMapping("/findById/{nfcCode}")
+    public CheckpointReduceDto findById(@PathVariable String nfcCode) {
+        return mapper.toCheckpointReduceDto(checkpointService.findById(nfcCode));
     }
 
 

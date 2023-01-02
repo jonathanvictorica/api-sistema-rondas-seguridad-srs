@@ -14,26 +14,24 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class RoundExecuteEvent {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	private LocalDateTime dateTimeEvent;
-	@ManyToOne
-	@JoinColumn
-	private RoundExecute roundExecute;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private LocalDateTime dateTimeEvent;
+    @ManyToOne
+    @JoinColumn
+    private RoundExecute roundExecute;
 
-	private String eventType;
+    private String eventType;
 
-	private String nfcCode;
+    private String nfcCode;
 
-	@Embedded
-	private Ubiety ubiety;
+    @Embedded
+    private Ubiety ubiety;
 
-	@ManyToOne
-	@JoinColumn
-	private User user;
-
-
+    @ManyToOne
+    @JoinColumn
+    private User user;
 
 
 }

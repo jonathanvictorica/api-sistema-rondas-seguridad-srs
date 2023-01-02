@@ -14,7 +14,7 @@ public class CheckpointComponent {
                 contentType(ContentType.JSON).
                 body(
                         new CheckpointController.CheckpointDto(identificadorNFC,
-                                "latitud", "longitud", subsidiaryId)
+                                GeneratorComponent.latitud(), GeneratorComponent.longitud(), subsidiaryId)
                 ).
                 when().post(Endpoints.API_CHECKPOINT)
                 .andReturn();
@@ -28,11 +28,11 @@ public class CheckpointComponent {
                 .andReturn();
     }
 
-    public static void deleteCheckpoint(String identificadorNFC) {
+    public static void deleteCheckpoint(String nfcCode) {
         given().header("Authorization", "Bearer " + BaseAPI.configuration.token()).
                 contentType(ContentType.JSON).
-                pathParam("nfcIdentify", identificadorNFC).
-                when().delete(Endpoints.API_CHECKPOINT + "/{nfcIdentify}")
+                pathParam("nfcCode", nfcCode).
+                when().delete(Endpoints.API_CHECKPOINT + "/{nfcCode}")
                 .andReturn().body();
     }
 
@@ -40,9 +40,9 @@ public class CheckpointComponent {
         return given()
                 .header("Authorization", "Bearer " + BaseAPI.configuration.token())
                 .contentType(ContentType.JSON)
-                .pathParam("checkpointNfc", nfc)
+                .pathParam("nfcCode", nfc)
                 .when()
-                .get(Endpoints.API_CHECKPOINT + "/findById/{checkpointNfc}")
+                .get(Endpoints.API_CHECKPOINT + "/findById/{nfcCode}")
                 .andReturn().body().as(CheckpointController.CheckpointReduceDto.class);
     }
 

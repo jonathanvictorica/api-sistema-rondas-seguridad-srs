@@ -21,12 +21,12 @@ public class RoundPlanningController {
 
     @PostMapping
     Long create(@RequestBody RoundPlanningDto request) {
-        return roundPlanningService.create( mapper.toRoundPlanning(request));
+        return roundPlanningService.create(mapper.toRoundPlanning(request));
     }
 
     @PutMapping
     void update(@RequestBody RoundPlanningDto request) {
-        roundPlanningService.update( mapper.toRoundPlanning(request));
+        roundPlanningService.update(mapper.toRoundPlanning(request));
     }
 
     @DeleteMapping("/{roundPlanningId}")
@@ -36,13 +36,13 @@ public class RoundPlanningController {
 
     @GetMapping("/findById/{roundPlanningId}")
     RoundPlanningReduceDto findById(@PathVariable("roundPlanningId") Long roundPlanningId) {
-        return  mapper.toRoundPlanningDto(roundPlanningService.findById(roundPlanningId));
+        return mapper.toRoundPlanningDto(roundPlanningService.findById(roundPlanningId));
 
     }
 
     @GetMapping("/findByRoundId/{roundId}")
     RoundPlanningListDto findByRoundId(@PathVariable("roundId") Long roundId) {
-        return new RoundPlanningListDto(roundPlanningService.findByRoundId(roundId).stream().map( mapper::toRoundPlanningDto).toList());
+        return new RoundPlanningListDto(roundPlanningService.findByRoundId(roundId).stream().map(mapper::toRoundPlanningDto).toList());
 
     }
 
@@ -53,7 +53,7 @@ public class RoundPlanningController {
     ) {
     }
 
-    public   record RoundPlanningReduceDto(
+    public record RoundPlanningReduceDto(
             Long id,
             Long rondaId,
             String dayName,
@@ -63,7 +63,7 @@ public class RoundPlanningController {
 
     public record RoundPlanningListDto(
             List<RoundPlanningReduceDto> plannings
-    ){
+    ) {
 
     }
 

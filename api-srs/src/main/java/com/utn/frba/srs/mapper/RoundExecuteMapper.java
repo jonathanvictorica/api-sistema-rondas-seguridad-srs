@@ -8,19 +8,19 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.springframework.stereotype.Component;
 
-@Mapper(componentModel = "spring",uses = {RoundMapper.class,RoundExecuteEventMapper.class})
+@Mapper(componentModel = "spring", uses = {RoundMapper.class, RoundExecuteEventMapper.class})
 @Component
 public interface RoundExecuteMapper {
 
 
     @Mappings({
-            @Mapping(source= "events", target="roundEvents"),
+            @Mapping(source = "events", target = "roundEvents"),
     })
     RoundExecuteQueryController.RoundExecuteDto toRoundExecuteDto(RoundExecute entity);
 
     @Mappings({
-            @Mapping(source="id", target="roundExecuteId"),
-            @Mapping(source= "round.id", target="roundId")
+            @Mapping(source = "id", target = "roundExecuteId"),
+            @Mapping(source = "round.id", target = "roundId")
     })
     RoundExecuteQueryController.RoundExecuteReduceDto toRoundExecuteReduceDto(RoundExecute entity);
 }

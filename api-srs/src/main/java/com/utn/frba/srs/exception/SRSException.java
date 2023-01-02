@@ -10,12 +10,11 @@ public class SRSException extends Exception {
 
     private final String code;
 
-    public SRSException(CatalogoErrores catalogoError) {
-        super(catalogoError.getMensaje());
-        this.code = catalogoError.getCodigo();
+    public SRSException(CatalogErrors catalogoError) {
+        super(catalogoError.getMessage());
+        this.code = catalogoError.getCode();
 
     }
-
 
 
 }

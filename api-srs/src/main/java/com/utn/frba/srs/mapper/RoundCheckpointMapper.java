@@ -13,14 +13,14 @@ public interface RoundCheckpointMapper {
 
 
     @Mappings({
-            @Mapping(source="nfcCode", target="checkpoint.nfcCode"),
-            @Mapping(source="executionOrder", target="executionOrder")
+            @Mapping(source = "nfcCode", target = "checkpoint.nfcCode"),
+            @Mapping(source = "executionOrder", target = "executionOrder")
     })
     RoundCheckpoint toRondaCheckPoint(RoundController.RoundCheckPointDto entity);
 
     @Mappings({
-            @Mapping(target="nfcCode", source="checkpoint.nfcCode"),
-            @Mapping(target="executionOrder", source="executionOrder")
+            @Mapping(target = "nfcCode", source = "checkpoint.nfcCode"),
+            @Mapping(target = "executionOrder", source = "executionOrder")
     })
     RoundController.RoundCheckPointDto toRoundCheckPointDto(RoundCheckpoint entity);
 }

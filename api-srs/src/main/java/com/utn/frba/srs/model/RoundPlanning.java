@@ -14,17 +14,14 @@ import java.time.LocalTime;
 @Builder
 public class RoundPlanning {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	@ManyToOne
-	@JoinColumn
-	private Round round;
-	private String diaSemana;
-	private LocalTime horaInicio;
-
-
-	
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    @ManyToOne
+    @JoinColumn
+    private Round round;
+    private String diaSemana;
+    private LocalTime horaInicio;
 
 
 }

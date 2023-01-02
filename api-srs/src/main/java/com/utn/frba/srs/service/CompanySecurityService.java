@@ -38,6 +38,6 @@ public class CompanySecurityService {
     }
 
     public SecurityCompany findByDocument(String type, String value) {
-        return securityCompanyRepository.findTop1ByDocumentTypeAndDocumentValue(type,value);
+        return securityCompanyRepository.findTop1ByDocumentTypeAndDocumentValue(type, value);
     }
 }

@@ -10,15 +10,15 @@ import java.time.LocalDateTime;
 @EnableAsync
 public class PlanningRoundScheduler {
 
-private final PlanningRoundEvent planningRoundEvent;
+    private final PlanningRoundEvent planningRoundEvent;
 
     public PlanningRoundScheduler(PlanningRoundEvent planningRoundEvent) {
         this.planningRoundEvent = planningRoundEvent;
     }
 
     @Async
-    @Scheduled(fixedRate = 60000,initialDelay = 30000)
-    public void scheduleRoundExecute() throws InterruptedException {
-        planningRoundEvent.publishEvent(new PlanningRoundEvent.Data(LocalDateTime.now(),5));
+    @Scheduled(fixedRate = 60000, initialDelay = 30000)
+    public void scheduleRoundExecute() {
+        planningRoundEvent.publishEvent(new PlanningRoundEvent.Data(LocalDateTime.now(), 5));
     }
 }

@@ -6,8 +6,9 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
+
 @Component
-public class RoundNotifyUbicationAgentEvent  extends EventProducer<RoundNotifyUbicationAgentEvent.Data> {
+public class RoundNotifyUbicationAgentEvent extends EventProducer<RoundNotifyUbicationAgentEvent.Data> {
 
     protected RoundNotifyUbicationAgentEvent(KafkaTemplate<Object, Object> template) {
         super(template);

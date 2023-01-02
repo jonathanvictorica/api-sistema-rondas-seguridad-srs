@@ -29,5 +29,4 @@ public class User {
 	private Boolean active;
 
 
-
 }

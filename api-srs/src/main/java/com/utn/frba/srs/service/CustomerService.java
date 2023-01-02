@@ -38,6 +38,6 @@ public class CustomerService {
     }
 
     public Customer findByDocument(String type, String value) {
-        return customerRepository.findTop1ByDocumentTypeAndDocumentValue(type,value);
+        return customerRepository.findTop1ByDocumentTypeAndDocumentValue(type, value);
     }
 }

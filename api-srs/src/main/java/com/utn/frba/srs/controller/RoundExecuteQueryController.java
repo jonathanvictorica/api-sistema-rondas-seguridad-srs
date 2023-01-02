@@ -14,61 +14,63 @@ import java.util.List;
 @RestController
 public class RoundExecuteQueryController {
 
-	private final RoundExecuteQueryService roundExecuteQueryService;
+    private final RoundExecuteQueryService roundExecuteQueryService;
 
-	private final RoundExecuteMapper mapper;
+    private final RoundExecuteMapper mapper;
 
-	public RoundExecuteQueryController(RoundExecuteQueryService roundExecuteQueryService, RoundExecuteMapper mapper) {
-		this.roundExecuteQueryService = roundExecuteQueryService;
-		this.mapper = mapper;
-	}
-
-
-	@GetMapping("/findOnlineById/{roundExecuteId}")
-	RoundExecuteQueryController.RoundExecuteDto findOnlineById(@PathVariable Long roundExecuteId){
-		return mapper.toRoundExecuteDto(roundExecuteQueryService.findOnlineById(roundExecuteId));
-	}
-
-	@GetMapping("/findRoundPendingBySubsidiary/{subsidiaryId}")
-	RoundExecuteReduceListDto findRoundPendingBySubsidiary(@PathVariable Long subsidiaryId){
-		return new RoundExecuteReduceListDto(roundExecuteQueryService.findRoundPendingBySubsidiary(subsidiaryId).stream().map(mapper::toRoundExecuteReduceDto).toList());
-	}
-	@GetMapping("/findByStateRevision")
-	RoundExecuteReduceListDto findByStateRevision(){
-		return new RoundExecuteReduceListDto(roundExecuteQueryService.findByStateRevision().stream().map(mapper::toRoundExecuteReduceDto).toList());
-	}
-
-	public record RoundExecuteDto(
-			Long id,
-			RoundController.RoundDto round,
-			LocalDateTime dateTimeInit,
-			String state,
-			List<RoundExecuteEventDto> roundEvents
-	) {
-
-	}
-
-	public record RoundExecuteEventDto(
-			Long id,
-			LocalDateTime dateTimeEvent,
-			String eventType,
-			String nfcCode,
-			String latitude,
-			String longitude,
-			String userName,
-			String userLastname,
-			String userDocumentType,
-			String userDocumentNumber
-	){}
+    public RoundExecuteQueryController(RoundExecuteQueryService roundExecuteQueryService, RoundExecuteMapper mapper) {
+        this.roundExecuteQueryService = roundExecuteQueryService;
+        this.mapper = mapper;
+    }
 
 
+    @GetMapping("/findOnlineById/{roundExecuteId}")
+    RoundExecuteQueryController.RoundExecuteDto findOnlineById(@PathVariable Long roundExecuteId) {
+        return mapper.toRoundExecuteDto(roundExecuteQueryService.findOnlineById(roundExecuteId));
+    }
 
-	public record RoundExecuteReduceDto(
-			Long roundExecuteId,
-			Long roundId
-	) {}
+    @GetMapping("/findRoundPendingBySubsidiary/{subsidiaryId}")
+    RoundExecuteReduceListDto findRoundPendingBySubsidiary(@PathVariable Long subsidiaryId) {
+        return new RoundExecuteReduceListDto(roundExecuteQueryService.findRoundPendingBySubsidiary(subsidiaryId).stream().map(mapper::toRoundExecuteReduceDto).toList());
+    }
 
-	public record RoundExecuteReduceListDto(List<RoundExecuteReduceDto> roundExecutes) {
+    @GetMapping("/findByStateRevision")
+    RoundExecuteReduceListDto findByStateRevision() {
+        return new RoundExecuteReduceListDto(roundExecuteQueryService.findByStateRevision().stream().map(mapper::toRoundExecuteReduceDto).toList());
+    }
 
-	}
+    public record RoundExecuteDto(
+            Long id,
+            RoundController.RoundDto round,
+            LocalDateTime dateTimeInit,
+            String state,
+            List<RoundExecuteEventDto> roundEvents
+    ) {
+
+    }
+
+    public record RoundExecuteEventDto(
+            Long id,
+            LocalDateTime dateTimeEvent,
+            String eventType,
+            String nfcCode,
+            String latitude,
+            String longitude,
+            String userName,
+            String userLastname,
+            String userDocumentType,
+            String userDocumentNumber
+    ) {
+    }
+
+
+    public record RoundExecuteReduceDto(
+            Long roundExecuteId,
+            Long roundId
+    ) {
+    }
+
+    public record RoundExecuteReduceListDto(List<RoundExecuteReduceDto> roundExecutes) {
+
+    }
 }

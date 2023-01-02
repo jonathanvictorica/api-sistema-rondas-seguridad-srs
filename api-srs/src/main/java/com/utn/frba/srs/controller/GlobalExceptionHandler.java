@@ -4,7 +4,6 @@ import com.utn.frba.srs.exception.SRSException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,24 +25,15 @@ class GlobalExceptionHandler {
     public static final String PATH = "path";
     public static final String STATUS = "status";
     public static final String TIMESTAMP = "timestamp";
+    public static final String DEFAULT_MESSAGE = "default message ";
 
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String, Object>> handleErrorMethodArgumentNotValidException(HttpServletRequest req, Exception ex) {
-        Map<String, Object> result = new HashMap<>();
-        String[] messages = ex.toString().split("default message ");
-        result.put(TIMESTAMP, LocalDateTime.now());
-        result.put(STATUS, HttpStatus.BAD_REQUEST.value());
-        result.put(ERROR, messages[messages.length - 1]);
-        result.put(PATH, new UrlPathHelper().getPathWithinApplication(req));
-        log.error(ERROR + ex.getMessage());
-        return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
-    }
+
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> handleError(HttpServletRequest req, Exception ex) {
         Map<String, Object> result = new HashMap<>();
-        String[] messages = ex.toString().split("default message ");
+        String[] messages = ex.toString().split(DEFAULT_MESSAGE);
         result.put(TIMESTAMP, LocalDateTime.now());
         result.put(STATUS, HttpStatus.BAD_REQUEST.value());
         result.put(ERROR, messages[messages.length - 1]);
@@ -55,7 +45,6 @@ class GlobalExceptionHandler {
     @ExceptionHandler(SRSException.class)
     public ResponseEntity<Map<String, Object>> handleErrorBusinessException(HttpServletRequest req, SRSException ex) {
         Map<String, Object> result = new HashMap<>();
-        String[] messages = ex.toString().split("default message ");
         result.put(TIMESTAMP, LocalDateTime.now());
         result.put(STATUS, HttpStatus.BAD_REQUEST.value());
         result.put(ERROR_CODE, ex.getCode());

@@ -13,19 +13,17 @@ import javax.persistence.*;
 @Builder
 public class RoundCheckpoint {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	@ManyToOne
-	@JoinColumn
-	private Round round;
-	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn
-	private Checkpoint checkpoint;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    @ManyToOne
+    @JoinColumn
+    private Round round;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn
+    private Checkpoint checkpoint;
 
-	private Integer executionOrder;
-
-	
+    private Integer executionOrder;
 
 
 }

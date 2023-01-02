@@ -11,9 +11,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class ApiSrsApplication {
 
 
-	public static void main(String[] args) {
-		SpringApplication.run(ApiSrsApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ApiSrsApplication.class, args);
+    }
 
 
 }

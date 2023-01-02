@@ -23,7 +23,7 @@ public class CompanySecurityController {
     }
 
     @PutMapping("/{companySecurityId}")
-    void update(@PathVariable("companySecurityId") Long companySecurityId, @RequestBody CompanySecurityDto request){
+    void update(@PathVariable("companySecurityId") Long companySecurityId, @RequestBody CompanySecurityDto request) {
         companySecurityService.update(mapper.toSecurityCompany(request));
     }
 
@@ -48,7 +48,7 @@ public class CompanySecurityController {
     }
 
 
-    public   record CompanySecurityDto(
+    public record CompanySecurityDto(
             String businessName,
             String documentType,
             String documentValue,
@@ -65,7 +65,7 @@ public class CompanySecurityController {
     ) {
     }
 
-    public   record CompanySecurityReduceDto(
+    public record CompanySecurityReduceDto(
             Long id,
             String businessName,
             String documentType,

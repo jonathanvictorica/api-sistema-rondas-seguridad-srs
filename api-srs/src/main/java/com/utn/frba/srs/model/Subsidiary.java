@@ -13,18 +13,18 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 public class Subsidiary {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	private String name;
-	private String description;
-	@ManyToOne
-	@JoinColumn
-	private Customer customer;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String name;
+    private String description;
+    @ManyToOne
+    @JoinColumn
+    private Customer customer;
 
-	@Embedded
-	private Domicile domicile;
-	private Boolean active;
+    @Embedded
+    private Domicile domicile;
+    private Boolean active;
 
 
 }

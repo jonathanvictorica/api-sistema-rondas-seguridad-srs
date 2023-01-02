@@ -12,20 +12,17 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 public class RoundRoute {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	@ManyToOne
-	@JoinColumn
-	private Round round;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    @ManyToOne
+    @JoinColumn
+    private Round round;
 
-	private int ordenCaminoRuta;
+    private int ordenCaminoRuta;
 
-	@Embedded
-	private Ubiety ubiety;
-	
-	
+    @Embedded
+    private Ubiety ubiety;
 
-	
-	
+
 }

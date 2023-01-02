@@ -13,16 +13,16 @@ import javax.persistence.Embedded;
 @Embeddable
 public class Domicile {
 
-	private String streetName;
-	private String streetNumber;
-	private String apartment;
-	private String flat;
-	private String city;
-	private String party;
-	private String province;
+    private String streetName;
+    private String streetNumber;
+    private String apartment;
+    private String flat;
+    private String city;
+    private String party;
+    private String province;
 
-	@Embedded
-	private Ubiety ubiety;
+    @Embedded
+    private Ubiety ubiety;
 
 
 }

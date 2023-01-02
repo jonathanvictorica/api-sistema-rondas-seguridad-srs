@@ -6,8 +6,9 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
+
 @Component
-public class RoundStartEvent  extends EventProducer<RoundStartEvent.Data> {
+public class RoundStartEvent extends EventProducer<RoundStartEvent.Data> {
 
     protected RoundStartEvent(KafkaTemplate<Object, Object> template) {
         super(template);

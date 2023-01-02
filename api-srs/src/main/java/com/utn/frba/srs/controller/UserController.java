@@ -1,6 +1,6 @@
 package com.utn.frba.srs.controller;
 
-import com.utn.frba.srs.constants.Constantes;
+import com.utn.frba.srs.constants.Constants;
 import com.utn.frba.srs.mapper.UserMapper;
 import com.utn.frba.srs.service.UserService;
 import org.springframework.web.bind.annotation.*;
@@ -57,17 +57,17 @@ public class UserController {
 
     @GetMapping("/roles")
     public List<String> roles() {
-        return Arrays.asList(Constantes.ROL_ADMIN, Constantes.ROL_VIGILANTE, Constantes.ROL_SUPERVISOR);
+        return Arrays.asList(Constants.ROLE_ADMIN, Constants.ROLE_VIGILANTE, Constants.ROLE_SUPERVISOR);
     }
 
 
-   public record UsuarioDto(
+    public record UsuarioDto(
             Long securityCompanyId,
             String name,
             String lastname,
             String documentType,
             String documentValue,
-            String mail ,
+            String mail,
             String rol,
             Boolean active
     ) {
@@ -81,7 +81,7 @@ public class UserController {
             String lastname,
             String documentType,
             String documentValue,
-            String mail ,
+            String mail,
             String rol,
             Boolean active
     ) {

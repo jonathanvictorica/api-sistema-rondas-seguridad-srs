@@ -40,6 +40,6 @@ public class UserService {
     }
 
     public User findByDocument(String type, String value) {
-        return userRepository.findTop1ByDocumentTypeAndDocumentValue(type,value);
+        return userRepository.findTop1ByDocumentTypeAndDocumentValue(type, value);
     }
 }

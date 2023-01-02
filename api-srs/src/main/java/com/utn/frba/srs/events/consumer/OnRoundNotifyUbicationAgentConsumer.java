@@ -1,6 +1,6 @@
 package com.utn.frba.srs.events.consumer;
 
-import com.utn.frba.srs.constants.Constantes;
+import com.utn.frba.srs.constants.Constants;
 import com.utn.frba.srs.events.producer.CatalogEvents;
 import com.utn.frba.srs.events.producer.RoundNotifyUbicationAgentEvent;
 import com.utn.frba.srs.model.RoundExecuteEvent;
@@ -33,14 +33,14 @@ public class OnRoundNotifyUbicationAgentConsumer {
         if (rondaEjecucion == null) {
             return;
         }
-        if (!rondaEjecucion.getState().equals(Constantes.RONDA_EJECUCION_INPROGRESS)) {
+        if (!rondaEjecucion.getState().equals(Constants.ROUND_EXECUTE_IN_PROGRESS)) {
             return;
         }
-        var rondaEjecucionEvento = roundExecuteEventRepository.findByRoundExecute_IdAndEventType(data.getRoundExecuteId(), Constantes.RONDA_EJECUCION_UBICACION_AGENT);
+        var rondaEjecucionEvento = roundExecuteEventRepository.findByRoundExecute_IdAndEventType(data.getRoundExecuteId(), Constants.ROUND_EXECUTE_UBIETY_AGENT);
         roundExecuteEventRepository.save(RoundExecuteEvent.builder()
                 .roundExecute(rondaEjecucion)
                 .id(rondaEjecucionEvento != null ? rondaEjecucionEvento.getId() : null)
-                .eventType(Constantes.RONDA_EJECUCION_UBICACION_AGENT)
+                .eventType(Constants.ROUND_EXECUTE_UBIETY_AGENT)
                 .ubiety(Ubiety.builder().latitude(data.getLatitude()).longitude(data.getLongitude()).build())
                 .dateTimeEvent(LocalDateTime.now())
                 .user(User.builder().id(data.getUserAgentId()).build())

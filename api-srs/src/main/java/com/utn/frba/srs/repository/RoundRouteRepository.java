@@ -11,6 +11,4 @@ public interface RoundRouteRepository extends JpaRepository<RoundRoute, Long> {
     List<RoundRoute> findByRound_Id(Long id);
 
 
-
-
 }

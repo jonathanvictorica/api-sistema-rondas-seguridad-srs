@@ -1,6 +1,6 @@
 package com.utn.frba.srs.events.consumer;
 
-import com.utn.frba.srs.constants.Constantes;
+import com.utn.frba.srs.constants.Constants;
 import com.utn.frba.srs.events.producer.CatalogEvents;
 import com.utn.frba.srs.events.producer.RoundMarkCheckpointEvent;
 import com.utn.frba.srs.model.RoundExecuteEvent;
@@ -27,12 +27,12 @@ public class OnRoundMarkCheckpointConsumer {
         if (rondaEjecucion == null) {
             return;
         }
-        if (!rondaEjecucion.getState().equals(Constantes.RONDA_EJECUCION_INPROGRESS)) {
+        if (!rondaEjecucion.getState().equals(Constants.ROUND_EXECUTE_IN_PROGRESS)) {
             return;
         }
         rondaEjecucion.getEvents().add(RoundExecuteEvent.builder()
                 .roundExecute(rondaEjecucion)
-                .eventType(Constantes.RONDA_EJECUCION_MARK_CHECKPOINT)
+                .eventType(Constants.ROUND_EXECUTE_MARK_CHECKPOINT)
                 .nfcCode(data.getNfcCode())
                 .ubiety(Ubiety.builder().latitude(data.getLatitude()).longitude(data.getLongitude()).build())
                 .dateTimeEvent(LocalDateTime.now())

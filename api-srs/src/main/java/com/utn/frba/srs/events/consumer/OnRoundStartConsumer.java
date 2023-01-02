@@ -1,6 +1,6 @@
 package com.utn.frba.srs.events.consumer;
 
-import com.utn.frba.srs.constants.Constantes;
+import com.utn.frba.srs.constants.Constants;
 import com.utn.frba.srs.events.producer.CatalogEvents;
 import com.utn.frba.srs.events.producer.RoundStartEvent;
 import com.utn.frba.srs.model.RoundExecuteEvent;
@@ -28,17 +28,17 @@ public class OnRoundStartConsumer {
         if (rondaEjecucion == null) {
             return;
         }
-        if(!rondaEjecucion.getState().equals(Constantes.RONDA_EJECUCION_PENDIENTE)){
+        if (!rondaEjecucion.getState().equals(Constants.ROUND_EXECUTE_PENDING)) {
             return;
         }
         rondaEjecucion.setEvents(new ArrayList<>());
         rondaEjecucion.getEvents().add(RoundExecuteEvent.builder()
-                        .roundExecute(rondaEjecucion)
-                        .eventType(Constantes.RONDA_EJECUCION_START)
-                        .dateTimeEvent(LocalDateTime.now())
-                        .user(User.builder().id(data.getUserAgentId()).build())
+                .roundExecute(rondaEjecucion)
+                .eventType(Constants.ROUND_EXECUTE_START)
+                .dateTimeEvent(LocalDateTime.now())
+                .user(User.builder().id(data.getUserAgentId()).build())
                 .build());
-        rondaEjecucion.setState(Constantes.RONDA_EJECUCION_INPROGRESS);
+        rondaEjecucion.setState(Constants.ROUND_EXECUTE_IN_PROGRESS);
         roundExecuteRepository.save(rondaEjecucion);
     }
 }

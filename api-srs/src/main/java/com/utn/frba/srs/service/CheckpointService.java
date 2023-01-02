@@ -1,6 +1,6 @@
 package com.utn.frba.srs.service;
 
-import com.utn.frba.srs.exception.CatalogoErrores;
+import com.utn.frba.srs.exception.CatalogErrors;
 import com.utn.frba.srs.exception.SRSException;
 import com.utn.frba.srs.model.Checkpoint;
 import com.utn.frba.srs.repository.CheckpointRepository;
@@ -29,7 +29,7 @@ public class CheckpointService {
     }
 
     private void createOrUpdate(Checkpoint checkPoint) throws SRSException {
-        subsidiaryRepository.findById(checkPoint.getSubsidiary().getId()).orElseThrow(() ->  new SRSException(CatalogoErrores.SUCURSAL_NO_EXISTE));
+        subsidiaryRepository.findById(checkPoint.getSubsidiary().getId()).orElseThrow(() -> new SRSException(CatalogErrors.SUBSIDIARY_NOT_FOUND));
         checkPointRepository.save(checkPoint);
     }
 

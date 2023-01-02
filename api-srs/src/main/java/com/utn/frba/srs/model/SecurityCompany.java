@@ -13,16 +13,14 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 public class SecurityCompany {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-	private String businessName;
-	private String documentType;
-	private String documentValue;
-	private Domicile domicile;
-	private Boolean active;
-
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String businessName;
+    private String documentType;
+    private String documentValue;
+    private Domicile domicile;
+    private Boolean active;
 
 
 }

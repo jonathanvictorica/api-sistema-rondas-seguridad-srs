@@ -6,8 +6,9 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
+
 @Component
-public class RoundMarkCheckpointEvent  extends EventProducer<RoundMarkCheckpointEvent.Data> {
+public class RoundMarkCheckpointEvent extends EventProducer<RoundMarkCheckpointEvent.Data> {
 
     protected RoundMarkCheckpointEvent(KafkaTemplate<Object, Object> template) {
         super(template);

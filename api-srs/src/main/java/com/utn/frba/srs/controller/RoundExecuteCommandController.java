@@ -43,7 +43,6 @@ public class RoundExecuteCommandController {
     }
 
 
-
     @PostMapping("/notifyLocationAgentOnline")
     void notifyLocationAgentOnline(NotifyLocationAgentOnlineDto request) {
         roundNotifyUbicationAgentEvent.publishEvent(mapper.toRoundNotifyUbicationAgentEvent(request));
@@ -69,7 +68,7 @@ public class RoundExecuteCommandController {
 
     }
 
-    public	record FinishRoundDto(
+    public record FinishRoundDto(
             Long roundExecuteId,
             Long userAgentId
 

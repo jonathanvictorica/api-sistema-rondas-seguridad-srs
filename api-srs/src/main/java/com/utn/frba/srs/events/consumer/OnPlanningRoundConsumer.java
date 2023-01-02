@@ -1,6 +1,6 @@
 package com.utn.frba.srs.events.consumer;
 
-import com.utn.frba.srs.constants.Constantes;
+import com.utn.frba.srs.constants.Constants;
 import com.utn.frba.srs.events.producer.CatalogEvents;
 import com.utn.frba.srs.events.producer.PlanningRoundEvent;
 import com.utn.frba.srs.model.RoundExecute;
@@ -35,8 +35,8 @@ public class OnPlanningRoundConsumer {
             if (result.isEmpty()) {
                 RoundExecute.RoundExecuteBuilder rondaEjecucion = RoundExecute.builder();
                 rondaEjecucion.round(rondaPlanificacion.getRound());
-                rondaEjecucion.state(Constantes.RONDA_EJECUCION_PENDIENTE);
-                rondaEjecucion.dateTimeStart(LocalDateTime.of(LocalDate.now(),rondaPlanificacion.getHoraInicio()));
+                rondaEjecucion.state(Constants.ROUND_EXECUTE_PENDING);
+                rondaEjecucion.dateTimeStart(LocalDateTime.of(LocalDate.now(), rondaPlanificacion.getHoraInicio()));
                 roundExecuteRepository.save(rondaEjecucion.build());
             }
         });

@@ -11,11 +11,11 @@ public abstract class EventProducer<D> {
         this.template = template;
     }
 
-    public void publishEvent(D eventData){
-        template.send(topic(),eventData);
+    public void publishEvent(D eventData) {
+        template.send(topic(), eventData);
     }
 
-    protected abstract String topic() ;
+    protected abstract String topic();
 
 
 }
