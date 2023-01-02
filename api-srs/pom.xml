@@ -15,7 +15,6 @@
 	<description>Proyecto Backend de SRS - Sistemas de Ronda de Seguridad</description>
 	<properties>
 		<java.version>17</java.version>
-
 		<restassured.version>5.3.0</restassured.version>
 		<junit.jupiter.version>5.9.1</junit.jupiter.version>
 		<assertj.version>3.23.1</assertj.version>
