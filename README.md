@@ -5,7 +5,7 @@ Proyecto Final de la Carrera Ingeniería en Sistemas de Información UTN FRBA
 
 * [Motivación](#-motivacin)
 * [Arquitectura](#-arquitectura)
-* [Componentes](#-componentes)
+* [Modelo de Base de Datos](#-modelo-de-base-de-datos)
 * [Tecnologías](#-tecnologas)
 * [Endpoints](#-endpoints)
 * [Ejecución](#-ejecucin)
@@ -30,7 +30,8 @@ los llamados a los endpoints correspondientes para la ejecución de una ronda de
 desde su app mobile, notifique ubicación en tiempo real, checkpoints que va marcando y cuando inicia y finaliza la ronda. 
 Para los eventos se usó la cola de mensajes de Kafka
 
-## 🚀 Componentes
+## 🚀 Modelo de Base de datos
+![DER](https://github.com/jonathanvictorica/api-sistema-rondas-seguridad-srs/blob/develop/doc/der.png)
 
 Parebens
 
