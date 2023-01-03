@@ -55,6 +55,7 @@ Para los eventos se usó la cola de mensajes de Kafka
   <tr><td>Round Planning</td><td>Administra las planificaciones de las rondas en base a los parámetros cargados para ejecutarse en ciertos días y horarios</td></tr>
 </tbody>
 </table>
+
 ### Modelo de Base de datos
 ![DER](https://github.com/jonathanvictorica/api-sistema-rondas-seguridad-srs/blob/develop/doc/der.png)
 
