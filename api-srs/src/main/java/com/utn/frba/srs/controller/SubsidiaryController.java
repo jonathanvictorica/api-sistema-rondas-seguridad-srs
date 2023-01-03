@@ -23,8 +23,8 @@ public class SubsidiaryController {
         return subsidiaryService.create(mapper.toSubsidiary(request));
     }
 
-    @PutMapping("/{subsidiaryId}")
-    void update(@PathVariable("subsidiaryId") Long subsidiaryId, @RequestBody SubsidiaryDto request) {
+    @PutMapping
+    void update( @RequestBody SubsidiaryDto request) {
         subsidiaryService.update(mapper.toSubsidiary(request));
     }
 

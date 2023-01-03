@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RestController
+@RestController("/api/v1/srs/users")
 public class UserController {
 
     private final UserService userService;
@@ -25,8 +25,8 @@ public class UserController {
         return userService.create(mapper.toUser(request));
     }
 
-    @PutMapping("/{userId}")
-    void update(@PathVariable("userId") Long userId, @RequestBody UsuarioDto request) {
+    @PutMapping
+    void update( @RequestBody UsuarioDto request) {
         userService.update(mapper.toUser(request));
     }
 

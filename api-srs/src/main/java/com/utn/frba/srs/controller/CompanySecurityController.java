@@ -22,8 +22,8 @@ public class CompanySecurityController {
         return companySecurityService.create(mapper.toSecurityCompany(request));
     }
 
-    @PutMapping("/{companySecurityId}")
-    void update(@PathVariable("companySecurityId") Long companySecurityId, @RequestBody CompanySecurityDto request) {
+    @PutMapping
+    void update(@RequestBody CompanySecurityDto request) {
         companySecurityService.update(mapper.toSecurityCompany(request));
     }
 

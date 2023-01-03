@@ -25,8 +25,8 @@ public class CustomerController {
 
     }
 
-    @PutMapping("/{customerId}")
-    void update(@PathVariable("customerId") Long customerId, @RequestBody CustomerDto request) {
+    @PutMapping
+    void update( @RequestBody CustomerDto request) {
         customerService.update(mapper.toCustomer(request));
 
     }

@@ -5,10 +5,10 @@ El proyecto completo tiene una interfaz Mobile y Web, pero en este repositorio s
 
 ## Índice
 
-- [Introducción](#introduccin)
-- [Documentación Técnica de la Solución](#-motivacin)
-  - [Diagrama de Arquitectura](#-arquitectura)
-  - [Diagrama de Componentes](#-arquitectura)
+- [Motivación](#-motivacin)
+- [Documentación Técnica de la Solución](#-documentacin-tcnica-de-la-solucin)
+  - [Diagrama de Arquitectura](#diagrama-de-arquitectura)
+  - [Diagrama de Componentes](#diagrama-de-componentes)
   - [Modelo de Base de Datos](#-modelo-de-base-de-datos)
   - [Tecnologías](#-tecnologas)
   - [Endpoints](#-endpoints)
@@ -59,9 +59,102 @@ Para los eventos se usó la cola de mensajes de Kafka
 ###  Endpoints
 
 <table>
-<thead><tr><th>Path</th><th>Descripción</th></tr></thead>
+<thead><tr><th>Método</th><th>Path</th></tr></thead>
 <tbody>
-<tr><td>/api/rest</td><td>hace esto</td></tr>
+  <tr><td>POST    </td><td>/api/v1/srs/checkpoint </td></tr>
+  <tr><td>PUT     </td><td>/api/v1/srs/checkpoint </td></tr>
+  <tr><td>DELETE  </td><td>/api/v1/srs/checkpoint/{nfcCode} </td></tr>
+  <tr><td>GET     </td><td>/api/v1/srs/checkpoint/findBySubsidiary/{subsidiaryId} </td></tr>
+</tbody>
+</table>
+
+
+<table>
+<thead><tr><th>Método</th><th>Path</th></tr></thead>
+<tbody>
+  <tr><td>POST    </td><td>/api/v1/srs/company-security</td></tr>
+  <tr><td>PUT     </td><td>/api/v1/srs/company-security</td></tr>
+  <tr><td>DELETE  </td><td>/api/v1/srs/company-security/{companySecurityId}</td></tr>
+  <tr><td>GET     </td><td>/api/v1/srs/company-security/all</td></tr>
+  <tr><td>GET     </td><td>/api/v1/srs/company-security/findById/{companySecurityId}</td></tr>
+  <tr><td>GET     </td><td>/api/v1/srs/company-security/findByDocument/{type}/{value}</td></tr>
+</tbody>
+</table>
+
+<table>
+<thead><tr><th>Método</th><th>Path</th></tr></thead>
+<tbody>
+  <tr><td>POST   </td><td>  /api/v1/srs/customers</td></tr>
+  <tr><td>PUT    </td><td>  /api/v1/srs/customers</td></tr>
+  <tr><td>DELETE </td><td> /api/v1/srs/customers/{customerId}</td></tr>
+  <tr><td>GET    </td><td> /api/v1/srs/customers/all</td></tr>
+  <tr><td>GET    </td><td> /api/v1/srs/customers/findById/{customerId}</td></tr>
+  <tr><td>GET    </td><td> /api/v1/srs/customers/findByDocument/{type}/{value}</td></tr>
+</tbody>
+</table>
+
+
+<table>
+<thead><tr><th>Método</th><th>Path</th></tr></thead>
+<tbody>
+  <tr><td>POST   </td><td>/api/v1/srs/round</td></tr>
+  <tr><td>PUT    </td><td>/api/v1/srs/round</td></tr>
+  <tr><td>DELETE </td><td>/api/v1/srs/round/{roundId}</td></tr>
+  <tr><td>GET    </td><td>/api/v1/srs/round/findBySubsidiary/{subsidiaryId}</td></tr>
+  <tr><td>GET    </td><td>/api/v1/srs/round/findByCustomer/{customerId}</td></tr>
+  <tr><td>GET    </td><td>/api/v1/srs/round/findById/{roundId}</td></tr>
+</tbody>
+</table>
+
+
+<table>
+<thead><tr><th>Método</th><th>Path</th></tr></thead>
+<tbody>
+  <tr><td>POST</td><td> /api/v1/srs/round-execute/startRound</td></tr>
+  <tr><td>POST</td><td> /api/v1/srs/round-execute/markCheckpoint</td></tr>
+  <tr><td>POST</td><td> /api/v1/srs/round-execute/finishRound</td></tr>
+  <tr><td>POST</td><td> /api/v1/srs/round-execute/notifyLocationAgentOnline</td></tr>
+  <tr><td>GET </td><td>/api/v1/srs/round-execute/findOnlineById/{roundExecuteId}</td></tr>
+  <tr><td>GET </td><td>/api/v1/srs/round-execute/findRoundPendingBySubsidiary/{subsidiaryId}</td></tr>
+  <tr><td>GET </td><td>/api/v1/srs/round-execute/findByStateRevision</td></tr>
+</tbody>
+</table>
+
+
+<table>
+<thead><tr><th>Método</th><th>Path</th></tr></thead>
+<tbody>
+  <tr><td>POST  </td><td> /api/v1/srs/round-planning</td></tr>
+  <tr><td>PUT   </td><td> /api/v1/srs/round-planning</td></tr>
+  <tr><td>DELETE</td><td> /api/v1/srs/round-planning/{roundPlanningId}</td></tr>
+  <tr><td>GET   </td><td> /api/v1/srs/round-planning/findById/{roundPlanningId}</td></tr>
+  <tr><td>GET   </td><td> /api/v1/srs/round-planning/findByRoundId/{roundId}</td></tr>
+</tbody>
+</table>
+
+
+<table>
+<thead><tr><th>Método</th><th>Path</th></tr></thead>
+<tbody>
+  <tr><td>POST   </td><td>/api/v1/srs/subsidiaries</td></tr>
+  <tr><td>PUT    </td><td>/api/v1/srs/subsidiaries</td></tr>
+  <tr><td>DELETE </td><td>/api/v1/srs/subsidiaries/{subsidiaryId}</td></tr>
+  <tr><td>GET    </td><td>/api/v1/srs/subsidiaries/findByCustomer/{customerId}</td></tr>
+  <tr><td>GET    </td><td>/api/v1/srs/subsidiaries/findById/{subsidiaryId}</td></tr>
+</tbody>
+</table>
+
+
+<table>
+<thead><tr><th>Método</th><th>Path</th></tr></thead>
+<tbody>
+  <tr><td>POST   </td><td>/api/v1/srs/users</td></tr>
+  <tr><td>PUT    </td><td>/api/v1/srs/users</td></tr>
+  <tr><td>DELETE </td><td>/api/v1/srs/users/{userId}</td></tr>
+  <tr><td>GET    </td><td>/api/v1/srs/users/findByRol/{rol}</td></tr>
+  <tr><td>GET    </td><td>/api/v1/srs/users/findById/{userId}</td></tr>
+  <tr><td>GET    </td><td>/api/v1/srs/users/findByDocument/{type}/{value}</td></tr>
+  <tr><td>GET    </td><td>/api/v1/srs/users/roles</td></tr>
 </tbody>
 </table>
 
