@@ -6,6 +6,8 @@ El proyecto completo tiene una interfaz Mobile y Web, pero en este repositorio s
 ## Índice
 
 - [Motivación](#-motivacin)
+- [Documentación Funcional de la Solución](#-documentacin-funcional-de-la-solucin)
+  - [Casos de Uso](#diagrama-de-casos-de-uso)
 - [Documentación Técnica de la Solución](#-documentacin-tcnica-de-la-solucin)
   - [Diagrama de Arquitectura](#diagrama-de-arquitectura)
   - [Diagrama de Componentes](#diagrama-de-componentes)
@@ -22,6 +24,10 @@ Las rondas de seguridad por lo general, tienen una planificación ya estipulada,
 A través de la aplicación web, el agente de seguridad, va a hacer el recorrido pasando por todos los checkpoint y leyendo el código NFC de cada punto de control. 
 Una vez finalizada la ronda de seguridad, cierra la misma, dejando asentado en el sistema que se hizo el recorrido correspondiente. 
 
+## 🚀 Documentación Funcional de la Solución
+### Diagrama de Casos de Uso
+![Diagrama de Casos de Uso](https://github.com/jonathanvictorica/api-sistema-rondas-seguridad-srs/blob/develop/doc/CasosUso.png)
+
 ## 🚀 Documentación Técnica de la Solución
 ### Diagrama de Arquitectura
 ![Diagrama de Despligue](https://github.com/jonathanvictorica/api-sistema-rondas-seguridad-srs/blob/develop/doc/Arquitectura.png)
@@ -36,8 +42,19 @@ Para los eventos se usó la cola de mensajes de Kafka
 ### Diagrama de Componentes
 ![Diagrama de Componentes](https://github.com/jonathanvictorica/api-sistema-rondas-seguridad-srs/blob/develop/doc/componentes.png)
 
-
-
+<table>
+<thead><tr><th>Componente</th><th>Descripción</th></tr></thead>
+<tbody>
+  <tr><td>Round</td><td>Administra las rondas de las sucursales, sus checkpoints y rutas</td></tr>
+  <tr><td>Company Security</td><td>Administra las empresas de seguridad que contratan la solución</td></tr>
+  <tr><td>Customer</td><td>Administra los clientes de las empresas de seguridad</td></tr>
+  <tr><td>Round Execute</td><td>Administra las ejecuciones de las rondas configuradas</td></tr>
+  <tr><td>Subsidiary</td><td>Administra las sucursales de los clientes</td></tr>
+  <tr><td>Checkpoint</td><td>Administra los checkpoints que se configuran en cada sucursal con NFC</td></tr>
+  <tr><td>User</td><td>Administra los usuarios del sistemas (no se maneja autenticación)</td></tr>
+  <tr><td>Round Planning</td><td>Administra las planificaciones de las rondas en base a los parámetros cargados para ejecutarse en ciertos días y horarios</td></tr>
+</tbody>
+</table>
 ### Modelo de Base de datos
 ![DER](https://github.com/jonathanvictorica/api-sistema-rondas-seguridad-srs/blob/develop/doc/der.png)
 
@@ -157,6 +174,7 @@ Para los eventos se usó la cola de mensajes de Kafka
   <tr><td>GET    </td><td>/api/v1/srs/users/roles</td></tr>
 </tbody>
 </table>
+
 
 
 ## 🚀 Ejecución
