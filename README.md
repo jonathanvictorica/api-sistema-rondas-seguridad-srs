@@ -71,6 +71,7 @@ Para los eventos se usó la cola de mensajes de Kafka
 * RestAssured
 * Spring JPA
 * Spring Kafka
+* Spring Security (JWT)
 * Mapstruct
 * Docker (BBDD Mysql y Kafka)
 
