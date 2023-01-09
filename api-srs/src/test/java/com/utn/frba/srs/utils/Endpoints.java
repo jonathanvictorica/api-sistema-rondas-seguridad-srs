@@ -3,6 +3,7 @@ package com.utn.frba.srs.utils;
 import java.net.URI;
 
 public class Endpoints {
+    public static String API_LOGIN = "/auth/authenticate";
     public static String API_ROUND_PLANNING = "/api/v1/srs/round-planning";
     public static String API_ROUND = "/api/v1/srs/round";
     public static String API_COMPANY_SECURITY = "/api/v1/srs/company-security";

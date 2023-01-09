@@ -10,7 +10,7 @@ import static io.restassured.RestAssured.given;
 public class CheckpointComponent {
 
     public static void createCheckpoint(Long subsidiaryId, String identificadorNFC) {
-        given().header("Authorization", "Bearer " + BaseAPI.configuration.token()).
+        given().header("Authorization", "Bearer " + BaseAPI.TOKEN).
                 contentType(ContentType.JSON).
                 body(
                         new CheckpointController.CheckpointDto(identificadorNFC,
@@ -21,7 +21,7 @@ public class CheckpointComponent {
     }
 
     public static void updateCheckpoint(CheckpointController.CheckpointDto request) {
-        given().header("Authorization", "Bearer " + BaseAPI.configuration.token()).
+        given().header("Authorization", "Bearer " + BaseAPI.TOKEN).
                 contentType(ContentType.JSON).
                 body(request).
                 when().put(Endpoints.API_CHECKPOINT)
@@ -29,7 +29,7 @@ public class CheckpointComponent {
     }
 
     public static void deleteCheckpoint(String nfcCode) {
-        given().header("Authorization", "Bearer " + BaseAPI.configuration.token()).
+        given().header("Authorization", "Bearer " + BaseAPI.TOKEN).
                 contentType(ContentType.JSON).
                 pathParam("nfcCode", nfcCode).
                 when().delete(Endpoints.API_CHECKPOINT + "/{nfcCode}")
@@ -38,7 +38,7 @@ public class CheckpointComponent {
 
     public static CheckpointController.CheckpointReduceDto findById(String nfc) {
         return given()
-                .header("Authorization", "Bearer " + BaseAPI.configuration.token())
+                .header("Authorization", "Bearer " + BaseAPI.TOKEN)
                 .contentType(ContentType.JSON)
                 .pathParam("nfcCode", nfc)
                 .when()
@@ -49,7 +49,7 @@ public class CheckpointComponent {
 
     public static CheckpointController.CheckpointReduceListDto findBySubsidiary(Long subsidiaryId) {
         return given()
-                .header("Authorization", "Bearer " + BaseAPI.configuration.token())
+                .header("Authorization", "Bearer " + BaseAPI.TOKEN)
                 .contentType(ContentType.JSON)
                 .pathParam("subsidiaryId", subsidiaryId)
                 .when()

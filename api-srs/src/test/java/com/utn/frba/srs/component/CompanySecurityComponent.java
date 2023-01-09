@@ -10,7 +10,7 @@ import static io.restassured.RestAssured.given;
 public class CompanySecurityComponent {
 
     public static void deleteCompanySecurity(Long companySecurityId) {
-        given().header("Authorization", "Bearer " + BaseAPI.configuration.token()).
+        given().header("Authorization", "Bearer " + BaseAPI.TOKEN).
                 contentType(ContentType.JSON).
                 pathParam("companySecurityId", companySecurityId)
                 .when().delete(Endpoints.API_COMPANY_SECURITY)
@@ -18,7 +18,7 @@ public class CompanySecurityComponent {
     }
 
     public static Long createCompanySecurity(String nombre, String tipoDocumento, String numeroDocumento) {
-        return given().header("Authorization", "Bearer " + BaseAPI.configuration.token()).
+        return given().header("Authorization", "Bearer " + BaseAPI.TOKEN).
                 contentType(ContentType.JSON).
                 body(
                         new CompanySecurityController.CompanySecurityDto(

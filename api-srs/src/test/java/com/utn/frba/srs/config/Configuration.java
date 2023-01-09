@@ -26,6 +26,5 @@ public interface Configuration extends Config {
     boolean logAll();
 
 
-    @Key("api.token")
-    String token();
+
 }

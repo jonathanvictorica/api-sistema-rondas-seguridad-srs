@@ -10,7 +10,7 @@ import static io.restassured.RestAssured.given;
 public class SubsidiaryComponent {
 
     public static Long createSubsidary(Long customerId, String sucursalName) {
-        return given().header("Authorization", "Bearer " + BaseAPI.configuration.token()).
+        return given().header("Authorization", "Bearer " + BaseAPI.TOKEN).
                 contentType(ContentType.JSON).
                 body(
                         new SubsidiaryController.SubsidiaryDto(
@@ -36,7 +36,7 @@ public class SubsidiaryComponent {
     }
 
     public static void deleteSubsidary(Long subsidiaryId) {
-        given().header("Authorization", "Bearer " + BaseAPI.configuration.token()).
+        given().header("Authorization", "Bearer " + BaseAPI.TOKEN).
                 contentType(ContentType.JSON).
                 pathParam("subsidiaryId", subsidiaryId)
                 .when().delete(Endpoints.API_SUBSIDIARY)

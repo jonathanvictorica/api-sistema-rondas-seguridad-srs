@@ -14,7 +14,7 @@ public class RoundComponent {
     public static Long createRound(Long subsidiaryId,String roundName,
                                    List<RoundController.RoundCheckPointDto> checkpoints,
                                    List<RoundController.RoundRouteDto> rutas) {
-        return given().header("Authorization", "Bearer " + BaseAPI.configuration.token()).
+        return given().header("Authorization", "Bearer " + BaseAPI.TOKEN).
                 contentType(ContentType.JSON).
                 body(
                         new RoundController.RoundDto(null,subsidiaryId,
@@ -29,7 +29,7 @@ public class RoundComponent {
 
 
     public static void deleteRound(Long roundId) {
-        given().header("Authorization", "Bearer " + BaseAPI.configuration.token()).
+        given().header("Authorization", "Bearer " + BaseAPI.TOKEN).
                 contentType(ContentType.JSON).
                 pathParam("roundId", roundId).
                 when().delete(Endpoints.API_ROUND + "/{roundId}")
@@ -38,7 +38,7 @@ public class RoundComponent {
 
     public static RoundController.RoundReduceDto findById(Long roundId) {
         return given()
-                .header("Authorization", "Bearer " + BaseAPI.configuration.token())
+                .header("Authorization", "Bearer " + BaseAPI.TOKEN)
                 .contentType(ContentType.JSON)
                 .pathParam("roundId", roundId)
                 .when()
@@ -49,7 +49,7 @@ public class RoundComponent {
     public static void updateRound(Long roundId,Long subsidiaryId,String roundName,
                                    List<RoundController.RoundCheckPointDto> checkpoints,
                                    List<RoundController.RoundRouteDto> rutas) {
-        given().header("Authorization", "Bearer " + BaseAPI.configuration.token()).
+        given().header("Authorization", "Bearer " + BaseAPI.TOKEN).
                 contentType(ContentType.JSON).
                 body(
                         new RoundController.RoundDto(roundId,subsidiaryId,

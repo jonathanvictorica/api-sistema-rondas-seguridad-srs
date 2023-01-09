@@ -10,7 +10,7 @@ import static io.restassured.RestAssured.given;
 public class CustomerComponent {
 
     public static Long createCustomer(Long empresaSeguridadId, String nombre, String tipoDocumento, String numeroDocumento) {
-        return given().header("Authorization", "Bearer " + BaseAPI.configuration.token()).
+        return given().header("Authorization", "Bearer " + BaseAPI.TOKEN).
                 contentType(ContentType.JSON).
                 body(
                         new CustomerController.CustomerDto(
@@ -34,7 +34,7 @@ public class CustomerComponent {
     }
 
     public static void deleteCustomer(Long customerId) {
-        given().header("Authorization", "Bearer " + BaseAPI.configuration.token()).
+        given().header("Authorization", "Bearer " + BaseAPI.TOKEN).
                 contentType(ContentType.JSON).
                 pathParam("customerId", customerId)
                 .when().delete(Endpoints.API_CUSTOMER)

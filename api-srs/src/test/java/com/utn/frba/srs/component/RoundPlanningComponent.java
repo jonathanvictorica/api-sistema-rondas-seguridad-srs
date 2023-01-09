@@ -11,7 +11,7 @@ import static io.restassured.RestAssured.given;
 public class RoundPlanningComponent {
 
     public static void createRoundPlanning(RoundPlanningController.RoundPlanningDto request) {
-        given().header("Authorization", "Bearer " + BaseAPI.configuration.token()).
+        given().header("Authorization", "Bearer " + BaseAPI.TOKEN).
                 contentType(ContentType.JSON).
                 body(request).
                 when().post(Endpoints.API_ROUND_PLANNING)
@@ -19,7 +19,7 @@ public class RoundPlanningComponent {
     }
 
     public static void updateRoundPlanning(RoundPlanningController.RoundPlanningDto request) {
-        given().header("Authorization", "Bearer " + BaseAPI.configuration.token()).
+        given().header("Authorization", "Bearer " + BaseAPI.TOKEN).
                 contentType(ContentType.JSON).
                 body(request).
                 when().put(Endpoints.API_ROUND_PLANNING)
@@ -27,7 +27,7 @@ public class RoundPlanningComponent {
     }
 
     public static void deleteRoundPlanning(Long roundPlanningId) {
-        given().header("Authorization", "Bearer " + BaseAPI.configuration.token()).
+        given().header("Authorization", "Bearer " + BaseAPI.TOKEN).
                 contentType(ContentType.JSON).
                 pathParam("roundPlanningId", roundPlanningId).
                 when().delete(Endpoints.API_ROUND_PLANNING + "/{roundPlanningId}")
@@ -36,7 +36,7 @@ public class RoundPlanningComponent {
 
     public static RoundPlanningController.RoundPlanningDto findById(Long roundPlanningId) {
         return given()
-                .header("Authorization", "Bearer " + BaseAPI.configuration.token())
+                .header("Authorization", "Bearer " + BaseAPI.TOKEN)
                 .contentType(ContentType.JSON)
                 .pathParam("roundPlanningId", roundPlanningId)
                 .when()
@@ -47,7 +47,7 @@ public class RoundPlanningComponent {
 
     public static RoundPlanningController.RoundPlanningListDto findByRoundId(Long roundId) {
         return given()
-                .header("Authorization", "Bearer " + BaseAPI.configuration.token())
+                .header("Authorization", "Bearer " + BaseAPI.TOKEN)
                 .contentType(ContentType.JSON)
                 .pathParam("roundId", roundId)
                 .when()
