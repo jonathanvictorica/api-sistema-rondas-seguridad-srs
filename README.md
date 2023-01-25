@@ -1,7 +1,3 @@
-[![Test Coverage](https://api.codeclimate.com/v1/badges/9dae1f1f51aaf7c83d0f8744aee6c85c4570c866e7d061e6368103f95706493c/test_coverage)](https://codeclimate.com/github/jonathanvictorica/api-sistema-rondas-seguridad-srs/test_coverage)
-[![Maintainability](https://api.codeclimate.com/v1/badges/9dae1f1f51aaf7c83d0f8744aee6c85c4570c866e7d061e6368103f95706493c/maintainability)](https://codeclimate.com/github/jonathanvictorica/api-sistema-rondas-seguridad-srs/maintainability)
-
-
 # Sistema de Rondas de Seguridad (SRS) 
 
    Esta API backend corresponde al proyecto presentado como trabajo final para la carrera de Ingeniería en Sistemas de Información - Facultad Regional Buenos Aires.
