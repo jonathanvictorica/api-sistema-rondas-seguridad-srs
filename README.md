@@ -1,7 +1,6 @@
 # Sistema de Rondas de Seguridad (SRS) 
 
-   Esta API backend corresponde al proyecto presentado como trabajo final para la carrera de Ingeniería en Sistemas de Información - Facultad Regional Buenos Aires.
-El proyecto completo tiene una interfaz Mobile y Web, pero en este repositorio solo se presenta la parte backend.
+   Este repositorio contiene la parte backend del proyecto presentado como trabajo final para la carrera de Ingeniería en Sistemas de Información en la Facultad Regional Buenos Aires. El proyecto completo incluye también una interfaz Mobile y Web, pero aquí solo se presenta el código correspondiente al backend. ¡Descubre cómo se implementó la lógica detrás de la aplicación!
 
 ## Índice
 
@@ -18,11 +17,9 @@ El proyecto completo tiene una interfaz Mobile y Web, pero en este repositorio s
 
 ## 🚀 Motivación
 
-   El proyecto tuvo como objetivo la creación de un Sistema de Rondas de Seguridad (SRS) en el que se diseñan rondas de seguridad con ayuda de checkpoint con tecnología NFC.
-Primero se crean los checkpoint en un lugar abierto, que son puntos de control por donde debe pasar la ronda de seguridad, y luego se crea a través de la web, dicha ronda.
-Las rondas de seguridad por lo general, tienen una planificación ya estipulada, para ejecutarse X cantidad de veces por día y también por semana. 
-A través de la aplicación web, el agente de seguridad, va a hacer el recorrido pasando por todos los checkpoint y leyendo el código NFC de cada punto de control. 
-Una vez finalizada la ronda de seguridad, cierra la misma, dejando asentado en el sistema que se hizo el recorrido correspondiente. 
+   El objetivo del proyecto fue desarrollar un Sistema de Rondas de Seguridad (SRS) que permita diseñar rondas de seguridad utilizando checkpoints con tecnología NFC. En primer lugar, se crean los checkpoints en un lugar abierto, los cuales son puntos de control por donde debe pasar la ronda de seguridad. Luego, a través de la interfaz web, se diseña la ronda de seguridad, la cual suele tener una planificación preestablecida para ejecutarse cierta cantidad de veces al día y a la semana.
+
+El agente de seguridad, utilizando la aplicación web, recorre los checkpoints y lee el código NFC de cada punto de control. Una vez finalizada la ronda de seguridad, cierra la misma y registra en el sistema que se completó el recorrido correspondiente. 
 
 ## 🚀 Documentación Funcional de la Solución
 ### Diagrama de Casos de Uso
